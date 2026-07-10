@@ -5,217 +5,349 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grey Mountain Mechanical | HVAC Engineering Solutions</title>
     <style>
-        /* Base Styles & Typography */
         :root {
-            --primary-dark: #2A313C; /* Dark blue/grey matching the logo */
-            --secondary-light: #F4F4F4;
-            --text-dark: #333333;
+            --primary-dark: #1A1F26;
+            --accent-blue: #3A4750;
+            --secondary-light: #F9F9F9;
+            --text-dark: #222222;
             --text-light: #FFFFFF;
-            --accent: #5A6B7C;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             background-color: var(--secondary-light);
+            overflow-x: hidden;
         }
 
         h1, h2, h3 {
-            font-family: 'Georgia', serif; /* Gives a professional, engineered feel */
+            font-family: 'Georgia', serif;
             font-weight: normal;
-            margin: 0;
         }
 
-        /* Hero / Landing Section */
-        .hero {
-            height: 100vh;
+        /* Top Left Navigation */
+        nav {
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            z-index: 10;
+        }
+
+        nav ul {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            /* REPLACE THE URL BELOW WITH YOUR MOUNTAIN IMAGE */
-            background: linear-gradient(rgba(42, 49, 60, 0.8), rgba(42, 49, 60, 0.8)), url('YOUR_MOUNTAIN_IMAGE.jpg') no-repeat center center/cover;
-            color: var(--text-light);
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            border-bottom: 2px solid var(--text-light);
-            padding-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            margin-top: 10px;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 80px 10%;
-            background-color: #FFFFFF;
-            text-align: center;
-        }
-
-        .services h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 40px;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .service-item {
-            padding: 20px;
-            background-color: var(--secondary-light);
-            border-left: 4px solid var(--primary-dark);
-            text-align: left;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 80px 10%;
-            background-color: var(--secondary-light);
-        }
-
-        .portfolio h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            list-style: none;
             gap: 30px;
         }
 
-        .project-card {
-            background-color: #FFFFFF;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
+        nav a:hover {
+            color: var(--text-light);
         }
 
-        .project-info {
-            padding: 20px;
+        /* Hero Landing Section with Animation */
+        .hero {
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('Grey Mountain Render.png') no-repeat center center/cover;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
         }
 
-        .project-info h3 {
-            color: var(--primary-dark);
+        .hero-content {
+            position: absolute;
+            width: 90%;
+            max-width: 500px;
+            /* Animation triggers immediately on load */
+            animation: centerToLeft 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1.1;
             margin-bottom: 5px;
-            font-size: 1.5rem;
         }
 
-        .project-info p.location {
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 15px;
+        .hero p {
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Footer / Contact Section */
-        footer {
+        /* Center to Left CSS Animation */
+        @keyframes centerToLeft {
+            0% {
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+            40% {
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+            100% {
+                left: 8%;
+                transform: translateX(0);
+                text-align: left;
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 8%;
+            background-color: #FFFFFF;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.15rem;
+            color: #555;
+        }
+
+        /* Projects Carousel Section */
+        .projects-section {
+            padding: 100px 5%;
             background-color: var(--primary-dark);
             color: var(--text-light);
+            position: relative;
+        }
+
+        .projects-section h2 {
             text-align: center;
-            padding: 60px 20px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
         }
 
-        footer h2 {
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #242B35;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+
+        .slide {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            min-height: 450px;
+        }
+
+        .slide.active {
+            display: grid;
+        }
+
+        /* Responsive stack for smaller screens */
+        @media (max-width: 768px) {
+            .slide {
+                grid-template-columns: 1fr;
+            }
+            @keyframes centerToLeft {
+                0%, 100% { left: 50%; transform: translateX(-50%); text-align: center; }
+            }
+        }
+
+        .slide-image {
+            background-size: cover;
+            background-position: center;
+            background-color: #1A1F26;
+            min-height: 300px;
+        }
+
+        .slide-content {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #FFF;
+        }
+
+        .slide-content .location {
+            font-size: 0.95rem;
+            color: #A0AAB5;
             margin-bottom: 20px;
-            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        footer p {
-            font-size: 1.2rem;
-            margin: 5px 0;
+        .slide-content p {
+            font-size: 1.05rem;
+            color: #D1D7DD;
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 5;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* Footer */
+        footer {
+            background-color: #111418;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
         }
 
         footer a {
-            color: var(--text-light);
+            color: #FFF;
             text-decoration: none;
-            border-bottom: 1px dotted #FFF;
-        }
-
-        footer a:hover {
-            color: #CCC;
         }
     </style>
 </head>
 <body>
 
-    <!-- Landing Page -->
-    <section class="hero">
-        <h1>Grey Mountain</h1>
-        <p>Mechanical</p>
-        <p style="font-size: 1.2rem; font-style: italic; letter-spacing: 1px;">HVAC Engineering Solutions</p>
-    </section>
+    <!-- Top Left Navigation Tabs -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
 
-    <!-- Services -->
-    <section class="services">
-        <h2>Scope of Services</h2>
-        <div class="service-grid">
-            <div class="service-item">Mechanical and Plumbing Design</div>
-            <div class="service-item">Load Calculations</div>
-            <div class="service-item">HVAC System Design</div>
-            <div class="service-item">Kitchen Equipment Design</div>
-            <div class="service-item">Construction Admin</div>
+    <!-- Landing Page Area -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Grey Mountain</h1>
+            <p>Mechanical</p>
         </div>
     </section>
 
-    <!-- Portfolio Highlights -->
-    <section class="portfolio">
-        <h2>Project Portfolio</h2>
-        <div class="portfolio-grid">
+    <!-- Brief About Section (To anchor the About Tab) -->
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>Grey Mountain Mechanical provides elite HVAC engineering solutions, specialized structural load calculations, and precision mechanical layouts designed to stand up to the toughest environmental demands.</p>
+    </section>
+
+    <!-- Cycling Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2>Featured Projects</h2>
+        
+        <div class="carousel-container">
             <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-info">
+            <div class="slide active">
+                <!-- Replace 'project1.jpg' with your actual project image path later -->
+                <div class="slide-image" style="background-image: url('project1.jpg');"></div>
+                <div class="slide-content">
                     <h3>Siempre Utah Reception Center</h3>
                     <p class="location">Draper, UT | 10,000 SF</p>
-                    <p>VRF system design for a reception center featuring a full-service commercial kitchen located in the basement.</p>
+                    <p>VRF system design for an upscale reception center featuring a comprehensive, full-service commercial kitchen space optimized efficiently inside the basement layout.</p>
                 </div>
             </div>
+
             <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-info">
+            <div class="slide">
+                <!-- Replace 'project2.jpg' later -->
+                <div class="slide-image" style="background-image: url('project2.jpg');"></div>
+                <div class="slide-content">
                     <h3>The Front Climbing Addition</h3>
                     <p class="location">Salt Lake City, UT | 30,000 SF</p>
-                    <p>A 20,000 SF addition and 10,000 SF remodel featuring climbing walls, saunas, and workout rooms handled across 4 phases.</p>
+                    <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel. Designed to accommodate climbing walls, custom saunas, and intense workout facilities deployed smoothly across 4 phases.</p>
                 </div>
             </div>
+
             <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-info">
+            <div class="slide">
+                <!-- Replace 'project3.jpg' later -->
+                <div class="slide-image" style="background-image: url('project3.jpg');"></div>
+                <div class="slide-content">
                     <h3>Dragon Steel Warehouse</h3>
                     <p class="location">Pleasant Grove, UT | 40,000 SF</p>
-                    <p>Warehouse and office space utilizing furnace systems and HVLS fans to increase comfort while reducing costs.</p>
+                    <p>Industrial warehouse combined with corporate office spaces. Implemented tailored furnace systems and high-volume low-speed (HVLS) fans to massively step up interior comfort profiles while protecting bottom-line utility operational costs.</p>
                 </div>
             </div>
+
+            <!-- Manual Controls -->
+            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Footer / Contact Information -->
     <footer>
-        <h2>Contact Us</h2>
-        <p>Phone: <a href="tel:3852018843">385-201-8843</a></p>
-        <p>Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
+        <p>Grey Mountain Mechanical &copy; 2026 | Phone: <a href="tel:3852018843">385-201-8843</a> | Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
     </footer>
 
+    <!-- Slider Engine Script -->
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(index) {
+            slides[currentSlideIndex].classList.remove('active');
+            currentSlideIndex = (index + slides.length) % slides.length;
+            slides[currentSlideIndex].classList.add('active');
+        }
+
+        function moveSlide(step) {
+            showSlide(currentSlideIndex + step);
+        }
+
+        // Automatic cycling configuration (5000ms = 5 seconds)
+        let autoCycle = setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        // Reset timer if user clicks manual arrows so it doesn't jump instantly
+        document.querySelectorAll('.carousel-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                clearInterval(autoCycle);
+                autoCycle = setInterval(() => { moveSlide(1); }, 5000);
+            });
+        });
+    </script>
 </body>
 </html>
