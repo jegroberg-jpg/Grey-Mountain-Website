@@ -1,8 +1,26 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    color: #333;
-    line-height: 1.6;
+:root{
+    --navy:#1F2933;
+    --slate:#334E68;
+    --light:#F5F7FA;
+    --gray:#D1D5DB;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Source Sans 3',sans-serif;
+    color:var(--navy);
+    background:white;
+    line-height:1.7;
+}
+
+h1,h2,h3,h4{
+    font-family:'Montserrat',sans-serif;
+    font-weight:600;
 }
 
 header {
