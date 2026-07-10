@@ -36,7 +36,7 @@
         nav {
             position: absolute;
             top: 30px;
-            right: 5%; /* Moved to the right side */
+            right: 5%;
             z-index: 10;
         }
 
@@ -78,6 +78,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            /* CAPITALIZED IMAGE NAME FIXED HERE */
             background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url('Grey Mountain Render.png') no-repeat center center/cover;
             opacity: 0;
             animation: fadeImageIn 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -89,12 +90,13 @@
             100% { opacity: 1; }
         }
 
-        /* Smoothed Out Center-to-Left Text Glide */
+        /* Ultra-Smooth Center-to-Left Text Glide */
         .hero-content {
             position: absolute;
             z-index: 2;
-            width: 90%;
-            max-width: 500px;
+            width: auto;
+            white-space: nowrap;
+            text-align: left; /* Left-aligned layout from 0% to 100% prevents layout snapping */
             animation: centerToLeftSmooth 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
@@ -116,13 +118,11 @@
         @keyframes centerToLeftSmooth {
             0% {
                 left: 50%;
-                transform: translateX(-50%);
-                text-align: center;
+                transform: translateX(-50%); /* Mathematically centers the block perfectly */
             }
             100% {
                 left: 8%;
-                transform: translateX(0);
-                text-align: left;
+                transform: translateX(0); /* Glides into its final left alignment seamlessly */
             }
         }
 
@@ -165,21 +165,20 @@
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
-            overflow: hidden; /* Hides the slides sitting off-screen */
+            overflow: hidden;
             background: #242B35;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-radius: 4px;
         }
 
-        /* The moving track holding all slides side-by-side */
         .carousel-track {
             display: flex;
             width: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Controls slide smoothness */
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .slide {
-            flex: 0 0 100%; /* Forces each slide to occupy exactly 100% container width */
+            flex: 0 0 100%;
             width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -192,7 +191,7 @@
                 grid-template-columns: 1fr;
             }
             @keyframes centerToLeftSmooth {
-                0%, 100% { left: 50%; transform: translateX(-50%); text-align: center; }
+                0%, 100% { left: 50%; transform: translateX(-50%); }
             }
         }
 
@@ -303,8 +302,8 @@
                     <div class="slide-image" style="background-image: url('project1.jpg');"></div>
                     <div class="slide-content">
                         <h3>Siempre Utah Reception Center</h3>
-                        <p class="location">Draper, UT | 10,000 SF</p>
-                        <p>VRF system design for an upscale reception center featuring a comprehensive, full-service commercial kitchen space optimized efficiently inside the basement layout.</p>
+                        <p class="location">Draper, UT | 10,000 SF[cite: 1]</p>
+                        <p>VRF system design for an upscale reception center featuring a comprehensive, full-service commercial kitchen space optimized efficiently inside the basement layout[cite: 1].</p>
                     </div>
                 </div>
 
@@ -313,8 +312,8 @@
                     <div class="slide-image" style="background-image: url('project2.jpg');"></div>
                     <div class="slide-content">
                         <h3>The Front Climbing Addition</h3>
-                        <p class="location">Salt Lake City, UT | 30,000 SF</p>
-                        <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel. Designed to accommodate climbing walls, custom saunas, and intense workout facilities deployed smoothly across 4 phases.</p>
+                        <p class="location">Salt Lake City, UT | 30,000 SF[cite: 1]</p>
+                        <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel[cite: 1]. Designed to accommodate climbing walls, custom saunas, and intense workout facilities deployed smoothly across 4 phases[cite: 1].</p>
                     </div>
                 </div>
 
@@ -323,8 +322,8 @@
                     <div class="slide-image" style="background-image: url('project3.jpg');"></div>
                     <div class="slide-content">
                         <h3>Dragon Steel Warehouse</h3>
-                        <p class="location">Pleasant Grove, UT | 40,000 SF</p>
-                        <p>Industrial warehouse combined with corporate office spaces. Implemented tailored furnace systems and high-volume low-speed (HVLS) fans to massively step up interior comfort profiles while protecting bottom-line utility operational costs.</p>
+                        <p class="location">Pleasant Grove, UT | 40,000 SF[cite: 1]</p>
+                        <p>Industrial warehouse combined with corporate office spaces[cite: 1]. Implemented tailored furnace systems and high-volume low-speed (HVLS) fans to massively step up interior comfort profiles while protecting bottom-line utility operational costs[cite: 1].</p>
                     </div>
                 </div>
             </div>
@@ -337,7 +336,7 @@
 
     <!-- Footer / Contact Information -->
     <footer>
-        <p>Grey Mountain Mechanical &copy; 2026 | Phone: <a href="tel:3852018843">385-201-8843</a> | Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
+        <p>Grey Mountain Mechanical &copy; 2026 | Phone: <a href="tel:3852018843">385-201-8843</a> | Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a>[cite: 1]</p>
     </footer>
 
     <!-- Sliding Carousel Engine Script -->
@@ -347,9 +346,7 @@
         const slides = document.querySelectorAll('.slide');
         
         function showSlide(index) {
-            // Loops the index safely around the boundaries
             currentSlideIndex = (index + slides.length) % slides.length;
-            // Shifts the track horizontally by multiples of 100%
             track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
 
@@ -357,12 +354,10 @@
             showSlide(currentSlideIndex + step);
         }
 
-        // Automatic sliding transition configuration (5 seconds)
         let autoCycle = setInterval(() => {
             moveSlide(1);
         }, 5000);
 
-        // Resets the timer if a user manually clicks an arrow
         document.querySelectorAll('.carousel-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 clearInterval(autoCycle);
