@@ -6,7 +6,7 @@
     <title>Grey Mountain Mechanical | HVAC Engineering Solutions</title>
     <style>
         :root {
-            --primary-dark: #1A1F26;
+            --primary-dark: #2A313C; /* Your signature blue/grey */
             --accent-blue: #3A4750;
             --secondary-light: #F9F9F9;
             --text-dark: #222222;
@@ -32,11 +32,11 @@
             font-weight: normal;
         }
 
-        /* Top Left Navigation */
+        /* Top RIGHT Navigation */
         nav {
             position: absolute;
             top: 30px;
-            left: 5%;
+            right: 5%; /* Moved to the right side */
             z-index: 10;
         }
 
@@ -59,22 +59,43 @@
             color: var(--text-light);
         }
 
-        /* Hero Landing Section with Animation */
+        /* Hero Landing Section with Fade Effect */
         .hero {
             height: 100vh;
             position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('Grey Mountain Render.png') no-repeat center center/cover;
+            background-color: var(--primary-dark); /* Starts as your signature solid blue */
             color: var(--text-light);
             display: flex;
             align-items: center;
+            overflow: hidden;
         }
 
+        /* Smoothly fades the mountain image in over the blue background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url('grey mountain render.png') no-repeat center center/cover;
+            opacity: 0;
+            animation: fadeImageIn 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            z-index: 1;
+        }
+
+        @keyframes fadeImageIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Smoothed Out Center-to-Left Text Glide */
         .hero-content {
             position: absolute;
+            z-index: 2;
             width: 90%;
             max-width: 500px;
-            /* Animation triggers immediately on load */
-            animation: centerToLeft 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: centerToLeftSmooth 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .hero h1 {
@@ -92,14 +113,8 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Center to Left CSS Animation */
-        @keyframes centerToLeft {
+        @keyframes centerToLeftSmooth {
             0% {
-                left: 50%;
-                transform: translateX(-50%);
-                text-align: center;
-            }
-            40% {
                 left: 50%;
                 transform: translateX(-50%);
                 text-align: center;
@@ -131,10 +146,10 @@
             color: #555;
         }
 
-        /* Projects Carousel Section */
+        /* Projects Sliding Carousel Section */
         .projects-section {
             padding: 100px 5%;
-            background-color: var(--primary-dark);
+            background-color: #1A1F26;
             color: var(--text-light);
             position: relative;
         }
@@ -150,20 +165,25 @@
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
-            overflow: hidden;
+            overflow: hidden; /* Hides the slides sitting off-screen */
             background: #242B35;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-radius: 4px;
         }
 
-        .slide {
-            display: none;
-            grid-template-columns: 1fr 1fr;
-            min-height: 450px;
+        /* The moving track holding all slides side-by-side */
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Controls slide smoothness */
         }
 
-        .slide.active {
+        .slide {
+            flex: 0 0 100%; /* Forces each slide to occupy exactly 100% container width */
+            width: 100%;
             display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 450px;
         }
 
         /* Responsive stack for smaller screens */
@@ -171,7 +191,7 @@
             .slide {
                 grid-template-columns: 1fr;
             }
-            @keyframes centerToLeft {
+            @keyframes centerToLeftSmooth {
                 0%, 100% { left: 50%; transform: translateX(-50%); text-align: center; }
             }
         }
@@ -249,7 +269,7 @@
 </head>
 <body>
 
-    <!-- Top Left Navigation Tabs -->
+    <!-- Top Right Navigation Tabs -->
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
@@ -266,47 +286,46 @@
         </div>
     </section>
 
-    <!-- Brief About Section (To anchor the About Tab) -->
+    <!-- Brief About Section -->
     <section id="about" class="about-section">
         <h2>About Us</h2>
         <p>Grey Mountain Mechanical provides elite HVAC engineering solutions, specialized structural load calculations, and precision mechanical layouts designed to stand up to the toughest environmental demands.</p>
     </section>
 
-    <!-- Cycling Projects Section -->
+    <!-- Sliding Projects Section -->
     <section id="projects" class="projects-section">
         <h2>Featured Projects</h2>
         
         <div class="carousel-container">
-            <!-- Project 1 -->
-            <div class="slide active">
-                <!-- Replace 'project1.jpg' with your actual project image path later -->
-                <div class="slide-image" style="background-image: url('project1.jpg');"></div>
-                <div class="slide-content">
-                    <h3>Siempre Utah Reception Center</h3>
-                    <p class="location">Draper, UT | 10,000 SF</p>
-                    <p>VRF system design for an upscale reception center featuring a comprehensive, full-service commercial kitchen space optimized efficiently inside the basement layout.</p>
+            <div class="carousel-track">
+                <!-- Project 1 -->
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project1.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>Siempre Utah Reception Center</h3>
+                        <p class="location">Draper, UT | 10,000 SF</p>
+                        <p>VRF system design for an upscale reception center featuring a comprehensive, full-service commercial kitchen space optimized efficiently inside the basement layout.</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Project 2 -->
-            <div class="slide">
-                <!-- Replace 'project2.jpg' later -->
-                <div class="slide-image" style="background-image: url('project2.jpg');"></div>
-                <div class="slide-content">
-                    <h3>The Front Climbing Addition</h3>
-                    <p class="location">Salt Lake City, UT | 30,000 SF</p>
-                    <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel. Designed to accommodate climbing walls, custom saunas, and intense workout facilities deployed smoothly across 4 phases.</p>
+                <!-- Project 2 -->
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project2.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>The Front Climbing Addition</h3>
+                        <p class="location">Salt Lake City, UT | 30,000 SF</p>
+                        <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel. Designed to accommodate climbing walls, custom saunas, and intense workout facilities deployed smoothly across 4 phases.</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Project 3 -->
-            <div class="slide">
-                <!-- Replace 'project3.jpg' later -->
-                <div class="slide-image" style="background-image: url('project3.jpg');"></div>
-                <div class="slide-content">
-                    <h3>Dragon Steel Warehouse</h3>
-                    <p class="location">Pleasant Grove, UT | 40,000 SF</p>
-                    <p>Industrial warehouse combined with corporate office spaces. Implemented tailored furnace systems and high-volume low-speed (HVLS) fans to massively step up interior comfort profiles while protecting bottom-line utility operational costs.</p>
+                <!-- Project 3 -->
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project3.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>Dragon Steel Warehouse</h3>
+                        <p class="location">Pleasant Grove, UT | 40,000 SF</p>
+                        <p>Industrial warehouse combined with corporate office spaces. Implemented tailored furnace systems and high-volume low-speed (HVLS) fans to massively step up interior comfort profiles while protecting bottom-line utility operational costs.</p>
+                    </div>
                 </div>
             </div>
 
@@ -321,27 +340,29 @@
         <p>Grey Mountain Mechanical &copy; 2026 | Phone: <a href="tel:3852018843">385-201-8843</a> | Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
     </footer>
 
-    <!-- Slider Engine Script -->
+    <!-- Sliding Carousel Engine Script -->
     <script>
         let currentSlideIndex = 0;
+        const track = document.querySelector('.carousel-track');
         const slides = document.querySelectorAll('.slide');
         
         function showSlide(index) {
-            slides[currentSlideIndex].classList.remove('active');
+            // Loops the index safely around the boundaries
             currentSlideIndex = (index + slides.length) % slides.length;
-            slides[currentSlideIndex].classList.add('active');
+            // Shifts the track horizontally by multiples of 100%
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
 
         function moveSlide(step) {
             showSlide(currentSlideIndex + step);
         }
 
-        // Automatic cycling configuration (5000ms = 5 seconds)
+        // Automatic sliding transition configuration (5 seconds)
         let autoCycle = setInterval(() => {
             moveSlide(1);
         }, 5000);
 
-        // Reset timer if user clicks manual arrows so it doesn't jump instantly
+        // Resets the timer if a user manually clicks an arrow
         document.querySelectorAll('.carousel-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 clearInterval(autoCycle);
