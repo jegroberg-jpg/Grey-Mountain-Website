@@ -1,47 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grey Mountain Mechanical</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Grey Mountain Mechanical | HVAC Engineering Solutions</title>
+    <style>
+        /* Base Styles & Typography */
+        :root {
+            --primary-dark: #2A313C; /* Dark blue/grey matching the logo */
+            --secondary-light: #F4F4F4;
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+            --accent: #5A6B7C;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--secondary-light);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif; /* Gives a professional, engineered feel */
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Hero / Landing Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* REPLACE THE URL BELOW WITH YOUR MOUNTAIN IMAGE */
+            background: linear-gradient(rgba(42, 49, 60, 0.8), rgba(42, 49, 60, 0.8)), url('YOUR_MOUNTAIN_IMAGE.jpg') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--text-light);
+            padding-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 10%;
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 40px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .service-item {
+            padding: 20px;
+            background-color: var(--secondary-light);
+            border-left: 4px solid var(--primary-dark);
+            text-align: left;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 10%;
+            background-color: var(--secondary-light);
+        }
+
+        .portfolio h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            font-size: 1.5rem;
+        }
+
+        .project-info p.location {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        /* Footer / Contact Section */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        footer h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        footer p {
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 1px dotted #FFF;
+        }
+
+        footer a:hover {
+            color: #CCC;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <h1>Grey Mountain Mechanical</h1>
-        <p>Mechanical Engineering Services</p>
-    </div>
-</header>
-
-<main>
-    <section>
-        <h2>About</h2>
-        <p>
-            Grey Mountain Engineering provides mechanical engineering
-            design services with a focus on HVAC systems and building
-            performance.
-        </p>
+    <!-- Landing Page -->
+    <section class="hero">
+        <h1>Grey Mountain</h1>
+        <p>Mechanical</p>
+        <p style="font-size: 1.2rem; font-style: italic; letter-spacing: 1px;">HVAC Engineering Solutions</p>
     </section>
 
-    <section>
-        <h2>Services</h2>
-        <ul>
-            <li>HVAC Design</li>
-            <li>Mechanical Engineering</li>
-            <li>Construction Administration</li>
-        </ul>
+    <!-- Services -->
+    <section class="services">
+        <h2>Scope of Services</h2>
+        <div class="service-grid">
+            <div class="service-item">Mechanical and Plumbing Design</div>
+            <div class="service-item">Load Calculations</div>
+            <div class="service-item">HVAC System Design</div>
+            <div class="service-item">Kitchen Equipment Design</div>
+            <div class="service-item">Construction Admin</div>
+        </div>
     </section>
 
-    <section>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+    <!-- Portfolio Highlights -->
+    <section class="portfolio">
+        <h2>Project Portfolio</h2>
+        <div class="portfolio-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Siempre Utah Reception Center</h3>
+                    <p class="location">Draper, UT | 10,000 SF</p>
+                    <p>VRF system design for a reception center featuring a full-service commercial kitchen located in the basement.</p>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>The Front Climbing Addition</h3>
+                    <p class="location">Salt Lake City, UT | 30,000 SF</p>
+                    <p>A 20,000 SF addition and 10,000 SF remodel featuring climbing walls, saunas, and workout rooms handled across 4 phases.</p>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Dragon Steel Warehouse</h3>
+                    <p class="location">Pleasant Grove, UT | 40,000 SF</p>
+                    <p>Warehouse and office space utilizing furnace systems and HVLS fans to increase comfort while reducing costs.</p>
+                </div>
+            </div>
+        </div>
     </section>
-</main>
+
+    <!-- Contact Section -->
+    <footer>
+        <h2>Contact Us</h2>
+        <p>Phone: <a href="tel:3852018843">385-201-8843</a></p>
+        <p>Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
+    </footer>
 
 </body>
 </html>
