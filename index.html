@@ -5,28 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grey Mountain Mechanical | HVAC & Plumbing Design</title>
   
-  <!-- Google Fonts for Modern, Tech-Premium Look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <script>
-    // Progressive Enhancement: Immediately add 'js' class to html to enable fade-in animations.
-    // If JS is disabled or delayed, the site remains fully visible!
-    document.documentElement.classList.add('js');
-  </script>
-
   <style>
     /* --- COLOR SYSTEM & BASE SETUP --- */
     :root {
-      --bg-dark: #0f172a;          /* Deep Slate Navy (Rich, clean, and cooler than black) */
-      --bg-card: #1e293b;          /* Sleek Slate Gray for cards */
-      --bg-input: #334155;         /* Lighter slate for input fields */
-      --accent-steel: #38bdf8;     /* Vibrant, premium Ice Blue / Electric Cyan */
-      --accent-light: #7dd3fc;     /* Soft highlight blue */
-      --text-main: #f8fafc;        /* Crisp, premium cool white */
-      --text-muted: #94a3b8;       /* Muted blue-grey for descriptions */
-      --border-thin: rgba(56, 189, 248, 0.15); /* Subtle steel blue border */
+      --bg-dark: #111112;          /* Deep rich charcoal */
+      --bg-card: #18181c;          /* Slightly lighter charcoal for cards */
+      --bg-input: #1f1f24;         /* Input field charcoal */
+      --accent-copper: #cf8a3c;    /* Premium Warm Copper */
+      --accent-light: #e5a85c;     /* Lighter highlighting bronze */
+      --text-main: #f5f5f7;        /* Crisp, premium white */
+      --text-muted: #9a9a9f;       /* Muted grey for descriptions */
+      --border-thin: rgba(207, 138, 60, 0.15); /* Subtle copper-accented border */
       --nav-height: 80px;
     }
 
@@ -70,21 +63,13 @@
       padding: 6rem 5% 7rem 5%;
     }
 
-    /* --- PROGRESSIVE ENHANCEMENT REVEAL ANIMATIONS --- */
-    /* By default (e.g. if JS fails), all content is fully visible and clean */
     .reveal {
-      opacity: 1;
-      transform: none;
+      opacity: 0;
+      transform: translateY(40px);
       transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Only hide elements if JavaScript loaded successfully */
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    .js .reveal.visible {
+    .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -100,7 +85,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(15, 23, 42, 0.95);
+      background-color: rgba(17, 17, 18, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       z-index: 1000;
@@ -123,7 +108,7 @@
     .logo-sub {
       font-size: 0.65rem;
       letter-spacing: 4px;
-      color: var(--accent-steel);
+      color: var(--accent-copper);
       text-transform: uppercase;
       margin-top: -2px;
     }
@@ -148,7 +133,7 @@
     }
 
     .nav-links a:hover, .nav-links a.active {
-      color: var(--accent-steel);
+      color: var(--accent-copper);
     }
 
     /* Bottom Line Hover Transition */
@@ -159,7 +144,7 @@
       height: 2px;
       bottom: 0;
       left: 0;
-      background-color: var(--accent-steel);
+      background-color: var(--accent-copper);
       transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -179,32 +164,22 @@
       width: 24px;
       height: 2px;
       background-color: var(--text-main);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s ease;
     }
 
-    /* Active Hamburger Cross Animation */
-    .menu-toggle.active .bar:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    .menu-toggle.active .bar:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active .bar:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* --- HERO SECTION --- */
+    /* --- HERO SECTION WITH STAGGERED INTRO --- */
     .hero {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 0 10%;
-      background: radial-gradient(circle at 80% 30%, rgba(56, 189, 248, 0.08), transparent 50%),
-                  linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      background: radial-gradient(circle at 80% 30%, rgba(207, 138, 60, 0.08), transparent 50%),
+                  linear-gradient(135deg, #111112 0%, #17171d 100%);
       position: relative;
     }
 
+    /* Delayed, Noticeable Text-Glide Transitions */
     .hero-title {
       font-family: 'Cinzel', serif;
       font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -212,10 +187,14 @@
       line-height: 1.1;
       margin-bottom: 1.5rem;
       letter-spacing: 1px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0.5s; /* Stagger start */
     }
 
     .hero-title span {
-      color: var(--accent-steel);
+      color: var(--accent-copper);
     }
 
     .hero-subtitle {
@@ -224,33 +203,19 @@
       max-width: 600px;
       margin-bottom: 2.5rem;
       font-weight: 300;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0.9s; /* Secondary delay to notice slide */
     }
 
     .hero-cta-container {
       display: flex;
       gap: 1.5rem;
-    }
-
-    /* Apply staggered glide animations ONLY if JS runs successfully */
-    .js .hero-title {
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.3s;
-    }
-
-    .js .hero-subtitle {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.6s;
-    }
-
-    .js .hero-cta-container {
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.9s;
+      animation-delay: 1.3s; /* Final CTA delay */
     }
 
     .btn {
@@ -266,16 +231,16 @@
     }
 
     .btn-primary {
-      background-color: var(--accent-steel);
+      background-color: var(--accent-copper);
       color: var(--bg-dark);
-      border: 1px solid var(--accent-steel);
+      border: 1px solid var(--accent-copper);
     }
 
     .btn-primary:hover {
       background-color: transparent;
-      color: var(--accent-steel);
+      color: var(--accent-copper);
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 10px 20px rgba(207, 138, 60, 0.15);
     }
 
     .btn-secondary {
@@ -285,8 +250,8 @@
     }
 
     .btn-secondary:hover {
-      border-color: var(--accent-steel);
-      color: var(--accent-steel);
+      border-color: var(--accent-copper);
+      color: var(--accent-copper);
       transform: translateY(-3px);
     }
 
@@ -331,7 +296,7 @@
       filter: grayscale(10%);
     }
 
-    /* Visual Steel Frame Decoration */
+    /* Visual Copper Frame Decoration */
     .about-image-wrapper::before {
       content: '';
       position: absolute;
@@ -339,8 +304,8 @@
       left: -15px;
       width: 100px;
       height: 100px;
-      border-top: 3px solid var(--accent-steel);
-      border-left: 3px solid var(--accent-steel);
+      border-top: 3px solid var(--accent-copper);
+      border-left: 3px solid var(--accent-copper);
       z-index: 1;
     }
 
@@ -351,8 +316,8 @@
       right: -15px;
       width: 100px;
       height: 100px;
-      border-bottom: 3px solid var(--accent-steel);
-      border-right: 3px solid var(--accent-steel);
+      border-bottom: 3px solid var(--accent-copper);
+      border-right: 3px solid var(--accent-copper);
       z-index: 1;
     }
 
@@ -361,7 +326,7 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--accent-steel);
+      color: var(--accent-copper);
       margin-bottom: 0.5rem;
       display: block;
     }
@@ -394,7 +359,7 @@
     .stat-number {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--accent-steel);
+      color: var(--accent-copper);
       margin-bottom: 0.2rem;
     }
 
@@ -454,9 +419,9 @@
     }
 
     .filter-btn:hover, .filter-btn.active {
-      border-color: var(--accent-steel);
-      color: var(--accent-steel);
-      background: rgba(56, 189, 248, 0.05);
+      border-color: var(--accent-copper);
+      color: var(--accent-copper);
+      background: rgba(207, 138, 60, 0.05);
     }
 
     /* Carousel Wrapper Track system */
@@ -496,9 +461,9 @@
     }
 
     .carousel-nav-btn:hover {
-      border-color: var(--accent-steel);
-      color: var(--accent-steel);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-copper);
+      color: var(--accent-copper);
+      box-shadow: 0 0 15px rgba(207, 138, 60, 0.15);
     }
 
     .carousel-nav-btn.prev {
@@ -524,7 +489,7 @@
 
     .project-card:hover {
       transform: translateY(-8px);
-      border-color: var(--accent-steel);
+      border-color: var(--accent-copper);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
 
@@ -538,14 +503,14 @@
     .card-category {
       font-size: 0.7rem;
       font-weight: 700;
-      color: var(--accent-steel);
+      color: var(--accent-copper);
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
     .card-specs-sf {
       font-size: 0.75rem;
-      background: rgba(56, 189, 248, 0.1);
+      background: rgba(207, 138, 60, 0.1);
       color: var(--accent-light);
       padding: 0.2rem 0.6rem;
       border-radius: 4px;
@@ -640,7 +605,7 @@
     }
 
     .carousel-dots .dot.active {
-      background-color: var(--accent-steel);
+      background-color: var(--accent-copper);
       width: 24px;
       border-radius: 4px;
     }
@@ -685,12 +650,12 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: rgba(56, 189, 248, 0.08);
+      background: rgba(207, 138, 60, 0.08);
       border: 1px solid var(--border-thin);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-steel);
+      color: var(--accent-copper);
       font-size: 1.1rem;
     }
 
@@ -742,8 +707,8 @@
 
     .form-input:focus {
       outline: none;
-      border-color: var(--accent-steel);
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+      border-color: var(--accent-copper);
+      box-shadow: 0 0 10px rgba(207, 138, 60, 0.1);
     }
 
     textarea.form-input {
@@ -789,13 +754,13 @@
       }
 
       .nav-links {
-        display: none;
+        display: none; /* Can be expanded with a JS hamburger class toggling */
         position: absolute;
         top: var(--nav-height);
         left: 0;
         width: 100%;
         flex-direction: column;
-        background-color: rgba(15, 23, 42, 0.98);
+        background-color: rgba(17, 17, 18, 0.98);
         padding: 2rem;
         gap: 1.5rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -824,14 +789,12 @@
 </head>
 <body>
 
-  <!-- --- NAVIGATION HEADER --- -->
   <header class="navbar">
     <div class="logo-container">
       <div class="logo-main">Grey Mountain</div>
       <div class="logo-sub">Mechanical</div>
     </div>
     
-    <!-- Right-Aligned Nav Menu -->
     <ul class="nav-links" id="navLinks">
       <li><a href="#home" class="active">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -839,7 +802,6 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
 
-    <!-- Hamburger menu toggle -->
     <div class="menu-toggle" id="mobileMenu">
       <span class="bar"></span>
       <span class="bar"></span>
@@ -847,7 +809,6 @@
     </div>
   </header>
 
-  <!-- --- HERO SECTION --- -->
   <section id="home" class="hero">
     <h1 class="hero-title">Precision HVAC &<br><span>Plumbing Design</span></h1>
     <p class="hero-subtitle">State-of-the-art engineering solutions engineered with code compliance, cost efficiency, and long-term maintainability in mind.</p>
@@ -857,15 +818,12 @@
     </div>
   </section>
 
-  <!-- --- ABOUT ME SECTION --- -->
   <section id="about" class="about section-padding reveal">
     <div class="about-grid">
-      <!-- Profile Picture Frame -->
       <div class="about-image-wrapper">
         <img src="image_45c607.jpg" alt="Enoch - Principal Mechanical Engineer" class="about-image">
       </div>
       
-      <!-- Bio column -->
       <div class="about-text-column">
         <span class="about-tag">About Me</span>
         <h2 class="about-title">Meet Enoch &amp; Grey Mountain Mechanical</h2>
@@ -876,7 +834,6 @@
           Every project is built upon rigorous direct coordination with architects, general contractors, and owners to guarantee that spaces remain seamlessly ventilated, functional, and fully code-compliant.
         </p>
         
-        <!-- Quick stats section -->
         <div class="about-stats">
           <div class="stat-item">
             <div class="stat-number">500k+</div>
@@ -891,7 +848,6 @@
     </div>
   </section>
 
-  <!-- --- PROJECTS SECTION (DYNAMIC SLIDING CAROUSEL) --- -->
   <section id="projects" class="projects section-padding reveal">
     <div class="section-header">
       <div class="section-title-wrapper">
@@ -900,7 +856,6 @@
       </div>
     </div>
 
-    <!-- Category Filter Buttons -->
     <div class="project-filters">
       <button class="filter-btn active" data-filter="all">All Projects</button>
       <button class="filter-btn" data-filter="hospitality">Hospitality & Food</button>
@@ -909,13 +864,11 @@
       <button class="filter-btn" data-filter="medical">Medical & Other</button>
     </div>
 
-    <!-- Carousel Slider Track and Arrows -->
     <div class="carousel-container">
       <button class="carousel-nav-btn prev" id="prevBtn" aria-label="Previous Slide">&#10094;</button>
       
       <div class="carousel-track" id="projectTrack">
         
-        <!-- Card 1: Siempre Utah -->
         <div class="project-card" data-category="hospitality">
           <div class="card-header-meta">
             <span class="card-category">Hospitality</span>
@@ -947,7 +900,6 @@
           </div>
         </div>
 
-        <!-- Card 2: Hearth & Hill -->
         <div class="project-card" data-category="hospitality">
           <div class="card-header-meta">
             <span class="card-category">Hospitality</span>
@@ -979,7 +931,6 @@
           </div>
         </div>
 
-        <!-- Card 3: Hills Kitchen -->
         <div class="project-card" data-category="hospitality">
           <div class="card-header-meta">
             <span class="card-category">Hospitality</span>
@@ -1011,7 +962,6 @@
           </div>
         </div>
 
-        <!-- Card 4: Black Rock Event Center -->
         <div class="project-card" data-category="medical">
           <div class="card-header-meta">
             <span class="card-category">Arena & Public</span>
@@ -1042,7 +992,6 @@
           </div>
         </div>
 
-        <!-- Card 5: Farmington Flex -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Industrial</span>
@@ -1073,7 +1022,6 @@
           </div>
         </div>
 
-        <!-- Card 6: Heritage School -->
         <div class="project-card" data-category="commercial">
           <div class="card-header-meta">
             <span class="card-category">Commercial</span>
@@ -1104,7 +1052,6 @@
           </div>
         </div>
 
-        <!-- Card 7: Brite Family Dental -->
         <div class="project-card" data-category="medical">
           <div class="card-header-meta">
             <span class="card-category">Medical</span>
@@ -1135,7 +1082,6 @@
           </div>
         </div>
 
-        <!-- Card 8: The Front Gym Addition -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Gym & Fitness</span>
@@ -1166,7 +1112,6 @@
           </div>
         </div>
 
-        <!-- Card 9: Dragon Steel -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Industrial</span>
@@ -1197,7 +1142,6 @@
           </div>
         </div>
 
-        <!-- Card 10: ABS Kids -->
         <div class="project-card" data-category="commercial">
           <div class="card-header-meta">
             <span class="card-category">Commercial</span>
@@ -1228,7 +1172,6 @@
           </div>
         </div>
 
-        <!-- Card 11: Jump TI -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Industrial</span>
@@ -1264,11 +1207,9 @@
       <button class="carousel-nav-btn next" id="nextBtn" aria-label="Next Slide">&#10095;</button>
     </div>
     
-    <!-- Navigation Indicator Dots -->
     <div class="carousel-dots" id="carouselDots"></div>
   </section>
 
-  <!-- --- CONTACT SECTION --- -->
   <section id="contact" class="contact section-padding reveal">
     <div class="contact-grid">
       <div class="contact-info">
@@ -1276,7 +1217,6 @@
         <p class="contact-subtext">Have an upcoming mechanical or plumbing engineering design project? Reach out to Enoch directly to review your project plans and engineering needs.</p>
         
         <div class="info-details">
-          <!-- Phone Info -->
           <div class="info-item">
             <div class="info-icon">&#9742;</div>
             <div class="info-text">
@@ -1285,7 +1225,6 @@
             </div>
           </div>
           
-          <!-- Email Info -->
           <div class="info-item">
             <div class="info-icon">&#9993;</div>
             <div class="info-text">
@@ -1296,13 +1235,8 @@
         </div>
       </div>
       
-      <!-- Premium Contact Form -->
       <div>
-        <!-- NOTE: To make this form work, replace the value in value="YOUR_ACCESS_KEY_HERE" below with your free access key from Web3Forms -->
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <!-- Hidden Input for Web3Forms API Key -->
-          <input type="hidden" name="access_key" value="5f4d0345-4041-4928-9422-c31c9921a0d8">
-          
+        <form class="contact-form" action="#" method="POST">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
@@ -1321,13 +1255,11 @@
     </div>
   </section>
 
-  <!-- --- FOOTER --- -->
   <footer class="footer">
     <div class="footer-logo">Grey Mountain Mechanical</div>
     <p class="footer-copyright">&copy; 2026 Grey Mountain Mechanical. All rights reserved.</p>
   </footer>
 
-  <!-- --- CORE WEBSITE LOGIC (CAROUSEL & TRANSITIONS) --- -->
   <script>
     /* --- MOBILE RESPONSIVE NAV TOGGLE --- */
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1346,7 +1278,7 @@
       });
     });
 
-    /* --- SAFE INTERSECTION OBSERVER FOR SCROLL REVEALS --- */
+    /* --- PREMIUM INTERSECTION OBSERVER FOR SCROLL REVEALS --- */
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -1372,11 +1304,10 @@
 
     window.addEventListener('scroll', () => {
       let current = '';
-      const scrollPosition = window.scrollY || window.pageYOffset;
-      
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (scrollPosition >= (sectionTop - 150)) {
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
           current = section.getAttribute('id');
         }
       });
