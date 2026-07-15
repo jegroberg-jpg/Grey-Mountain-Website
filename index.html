@@ -12,33 +12,41 @@
             --text-dark: #222222;
             --text-light: #FFFFFF;
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-dark); line-height: 1.6; background-color: var(--secondary-light); overflow-x: hidden; }
+        html { scroll-behavior: smooth; } /* Makes nav clicks scroll smoothly */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--secondary-light);
+            overflow-x: hidden;
+        }
+
         h1, h2, h3 { font-family: 'Georgia', serif; font-weight: normal; }
-        
-        /* Nav */
-        nav { position: absolute; top: 30px; right: 5%; z-index: 10; }
+
+        /* Navigation */
+        nav { position: fixed; top: 30px; right: 5%; z-index: 100; }
         nav ul { display: flex; list-style: none; gap: 30px; }
         nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s ease; }
         nav a:hover { color: var(--text-light); }
 
         /* Hero */
         .hero { height: 100vh; position: relative; background-color: var(--primary-dark); color: var(--text-light); display: flex; align-items: center; overflow: hidden; }
-        
         .hero::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url('Grey Mountain Render.png') no-repeat center center/cover;
             opacity: 0;
-            /* 2s delay added here */
             animation: fadeImageIn 4s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
             z-index: 1;
         }
-
         @keyframes fadeImageIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
         .hero-content {
             position: absolute; z-index: 2; width: auto; white-space: nowrap; text-align: left;
-            /* 2s delay added here */
+            /* Starts centered, then animates */
+            left: 50%; transform: translateX(-50%);
             animation: centerToLeftSmooth 3s cubic-bezier(0.25, 1, 0.5, 1) 2s forwards;
         }
         .hero h1 { font-size: 3.5rem; letter-spacing: 4px; text-transform: uppercase; line-height: 1.1; margin-bottom: 5px; }
@@ -48,14 +56,39 @@
             0% { left: 50%; transform: translateX(-50%); }
             100% { left: 8%; transform: translateX(0); }
         }
+
+        /* About Section */
+        .about-section { padding: 100px 8%; background-color: #FFFFFF; max-width: 900px; margin: 0 auto; text-align: center; }
+        .about-section h2 { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 20px; }
+        .about-section p { font-size: 1.15rem; color: #555; }
+
+        /* Projects Section */
+        .projects-section { padding: 100px 5%; background-color: #1A1F26; color: var(--text-light); }
+        .projects-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+        .carousel-container { position: relative; max-width: 1000px; margin: 0 auto; overflow: hidden; background: #242B35; border-radius: 4px; }
+        .carousel-track { display: flex; width: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .slide { flex: 0 0 100%; display: grid; grid-template-columns: 1fr 1fr; min-height: 450px; }
+        .slide-image { background-size: cover; background-position: center; min-height: 300px; }
+        .slide-content { padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; padding: 15px; cursor: pointer; z-index: 5; }
+        .prev-btn { left: 10px; } .next-btn { right: 10px; }
+
+        /* Contact Section */
+        .contact-section { padding: 100px 5%; background-color: #FFFFFF; max-width: 900px; margin: 0 auto; }
+        .contact-section h2 { text-align: center; font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 40px; }
+        .contact-form { display: flex; flex-direction: column; gap: 20px; max-width: 600px; margin: 0 auto; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 4px; }
+        .contact-form button { background-color: var(--primary-dark); color: white; border: none; padding: 15px; cursor: pointer; }
     </style>
 </head>
 <body>
+
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="index.html#about">About</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -65,5 +98,56 @@
             <p>Mechanical</p>
         </div>
     </section>
+
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>Grey Mountain Mechanical provides elite HVAC engineering solutions, specialized structural load calculations, and precision mechanical layouts designed to stand up to the toughest environmental demands.</p>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <h2>Featured Projects</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project1.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>Siempre Utah Reception Center</h3>
+                        <p>VRF system design for an upscale reception center featuring a comprehensive commercial kitchen space.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project2.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>The Front Climbing Addition</h3>
+                        <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Get in Touch</h2>
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="5f4d0345-4041-4928-9422-c31c9921a0d8">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        let currentSlideIndex = 0;
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(index) {
+            currentSlideIndex = (index + slides.length) % slides.length;
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        }
+        function moveSlide(step) { showSlide(currentSlideIndex + step); }
+    </script>
 </body>
 </html>
