@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Grey Mountain Mechanical</title>
+    <style>
+        :root {
+            --primary-dark: #2A313C;
+            --secondary-light: #F9F9F9;
+            --text-dark: #222222;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--secondary-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation Bar */
+        header {
+            background-color: var(--primary-dark);
+            padding: 30px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Georgia', serif;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-light);
+        }
+
+        /* Two-Column About Section */
+        .about-container {
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 5%;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            flex: 1;
+            max-width: 450px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-color: #DDD;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1.2;
+        }
+
+        .about-text h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Stack */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            .about-image {
+                max-width: 300px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            margin-top: 100px;
+        }
+
+        footer a { color: #FFF; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Grey Mountain</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="about-container">
+        <!-- Left Side: Profile Photo (Rename your photo to profile.jpg and upload it to GitHub) -->
+        <div class="about-image">
+            <img src="profile.jpg" alt="Enoch - Grey Mountain Mechanical">
+        </div>
+
+        <!-- Right Side: Bio Text -->
+        <div class="about-text">
+            <h1>Engineering Comfort, Designing Solutions</h1>
+            <p>At Grey Mountain Mechanical, we bring structure, precision, and reliable engineering expertise to every HVAC challenge. Specializing in mechanical layouts, heat load calculations, and tailored ventilation designs, we ensure built environments perform flawlessly under any conditions[cite: 1].</p>
+            <p>Whether handling complex kitchen ventilation, advanced VRF designs, or large-scale warehouse layouts, our focus is on striking the perfect balance between high-performance indoor comfort and smart operational efficiency[cite: 1].</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Grey Mountain Mechanical &copy; 2026 | Phone: <a href="tel:3852018843">385-201-8843</a> | Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a>[cite: 1]</p>
+    </footer>
+
+</body>
+</html>
