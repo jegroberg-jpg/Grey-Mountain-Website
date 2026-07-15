@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Details</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 50px; max-width: 800px; margin: 0 auto; background: #F9F9F9; }
+        img { width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1 id="project-title">Loading...</h1>
+    <img id="project-image" src="" alt="Project">
+    <p id="project-desc"></p>
+    <a href="projects.html">Back to Projects</a>
+
+    <script>
+        // Simple logic to set content based on ID
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        
+        const data = {
+            '1': { title: 'Siempre Utah Reception Center', desc: 'VRF system design...' },
+            '2': { title: 'The Front Climbing Addition', desc: 'A sprawling 20,000 SF expansion...' },
+            '3': { title: 'Dragon Steel Warehouse', desc: 'Industrial warehouse project...' }
+        };
+
+        if(data[id]) {
+            document.getElementById('project-title').innerText = data[id].title;
+            document.getElementById('project-desc').innerText = data[id].desc;
+        }
+    </script>
+</body>
+</html>
