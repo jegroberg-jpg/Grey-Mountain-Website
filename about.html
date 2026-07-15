@@ -2,24 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Us | Grey Mountain Mechanical</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Grey Mountain Mechanical</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; padding: 100px 5%; max-width: 900px; margin: 0 auto; line-height: 1.6; }
-        nav { position: fixed; top: 30px; right: 5%; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: #333; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+        /* Color Palette & Base Styles */
+        body {
+            background-color: #F8F9FA; /* Off-white background */
+            color: #2F3E46; /* Slate text */
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2F3E46;
+            color: #F8F9FA;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .photo-placeholder {
+            width: 300px;
+            height: 300px;
+            background-color: #CBD5E0; /* Light Grey placeholder box */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 4px solid #2F3E46;
+        }
+
+        .bio {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        h2 { color: #2F3E46; }
+        
+        /* Accent color for links or buttons */
+        a { color: #52796F; } 
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <h1>About Grey Mountain Mechanical</h1>
-    <p>Grey Mountain Mechanical provides elite HVAC engineering solutions, specialized structural load calculations, and precision mechanical layouts designed to stand up to the toughest environmental demands.</p>
+
+    <header>
+        <h1>Grey Mountain Mechanical</h1>
+    </header>
+
+    <div class="about-container">
+        <!-- Photo Placeholder Section -->
+        <div class="photo-placeholder">
+            <!-- Replace 'your-photo.jpg' with your image file path -->
+            <img src="your-photo.jpg" alt="Professional Photo" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <!-- Bio Section -->
+        <div class="bio">
+            <h2>About Me</h2>
+            <p>Welcome to Grey Mountain Mechanical. My name is [Your Name], and I specialize in providing innovative HVAC engineering solutions.</p>
+            <p>With a focus on code compliance, efficient system design, and practical construction administration, I help bring architectural visions to life while ensuring comfort and functionality for every space—from commercial kitchens to large-scale warehouses.</p>
+            <p>I am passionate about finding creative solutions to challenging mechanical constraints and coordinating seamlessly with contractors to deliver projects on time.</p>
+        </div>
+    </div>
+
 </body>
 </html>
