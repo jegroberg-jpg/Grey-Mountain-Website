@@ -1,1463 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grey Mountain Mechanical | HVAC & Plumbing Design</title>
-  
-  <!-- Google Fonts for Modern, Tech-Premium Look -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <script>
-    // Progressive Enhancement: Immediately add 'js' class to html to enable fade-in animations.
-    // If JS is disabled or delayed, the site remains fully visible and never stuck on a black screen!
-    document.documentElement.classList.add('js');
-  </script>
-
-  <style>
-    /* --- COLOR SYSTEM & BASE SETUP --- */
-    :root {
-      --bg-dark: #0f172a;          /* Deep Slate Navy (Rich and clean) */
-      --bg-card: #1e293b;          /* Sleek Slate Gray for cards */
-      --bg-input: #334155;         /* Lighter slate for input fields */
-      --accent-steel: #38bdf8;     /* Vibrant, premium Ice Blue */
-      --accent-light: #7dd3fc;     /* Soft highlight blue */
-      --text-main: #f8fafc;        /* Crisp cool white */
-      --text-muted: #94a3b8;       /* Muted blue-grey */
-      --border-thin: rgba(56, 189, 248, 0.15); 
-      --nav-height: 80px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: var(--nav-height); 
-      box-sizing: border-box;
-    }
-
-    *, *:before, *:after {
-      box-sizing: inherit;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3, h4 {
-      margin: 0;
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0 0 1rem 0;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-
-    .section-padding {
-      padding: 6rem 5% 7rem 5%;
-    }
-
-    /* --- PROGRESSIVE ENHANCEMENT REVEAL ANIMATIONS --- */
-    /* By default, all content is fully visible. No blank screens. */
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Only hide elements dynamically if JavaScript executes successfully */
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    .js .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* --- FIXED NAVIGATION BAR --- */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 5%;
-      height: var(--nav-height);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      z-index: 1000;
-    }
-
-    .logo-container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-main {
-      font-family: 'Cinzel', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .logo-sub {
-      font-size: 0.65rem;
-      letter-spacing: 4px;
-      color: var(--accent-steel);
-      text-transform: uppercase;
-      margin-top: -2px;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2.5rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      position: relative;
-      padding: 0.5rem 0;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--accent-steel);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--accent-steel);
-      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .nav-links a:hover::after, .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .menu-toggle .bar {
-      width: 24px;
-      height: 2px;
-      background-color: var(--text-main);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .menu-toggle.active .bar:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    .menu-toggle.active .bar:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active .bar:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* --- HERO SECTION WITH MOUNTAIN BACKGROUND --- */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 10%;
-      /* Premium dark image overlay paired with your local mountain asset */
-      background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.9)), 
-                  url('Grey Mountain Render.png') no-repeat center center / cover;
-      position: relative;
-    }
-
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-    }
-
-    .hero-title span {
-      color: var(--accent-steel);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
-      color: var(--text-muted);
-      max-width: 600px;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-    }
-
-    .hero-cta-container {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    /* Staggered glide transitions (only active when JS is enabled) */
-    .js .hero-title {
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.3s;
-    }
-
-    .js .hero-subtitle {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.6s;
-    }
-
-    .js .hero-cta-container {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.9s;
-    }
-
-    .btn {
-      padding: 1rem 2.2rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border-radius: 4px;
-      cursor: pointer;
-      display: inline-block;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .btn-primary {
-      background-color: var(--accent-steel);
-      color: var(--bg-dark);
-      border: 1px solid var(--accent-steel);
-    }
-
-    .btn-primary:hover {
-      background-color: transparent;
-      color: var(--accent-steel);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent-steel);
-      color: var(--accent-steel);
-      transform: translateY(-3px);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* --- ABOUT US SECTION --- */
-    .about {
-      background-color: var(--bg-card);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 5rem;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .about-image-wrapper {
-      position: relative;
-    }
-
-    .about-image {
-      width: 100%;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    .about-image-wrapper::before {
-      content: '';
-      position: absolute;
-      top: -15px;
-      left: -15px;
-      width: 100px;
-      height: 100px;
-      border-top: 3px solid var(--accent-steel);
-      border-left: 3px solid var(--accent-steel);
-      z-index: 1;
-    }
-
-    .about-image-wrapper::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      right: -15px;
-      width: 100px;
-      height: 100px;
-      border-bottom: 3px solid var(--accent-steel);
-      border-right: 3px solid var(--accent-steel);
-      z-index: 1;
-    }
-
-    .about-tag {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent-steel);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .about-title {
-      font-size: 2.2rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
-    }
-
-    .about-bio {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-
-    .stat-item {
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 4px;
-    }
-
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--accent-steel);
-      margin-bottom: 0.2rem;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-    }
-
-    /* --- PROJECTS SECTION (DYNAMIC CAROUSEL) --- */
-    .projects {
-      background-color: var(--bg-dark);
-      position: relative;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      max-width: 1200px;
-      margin: 0 auto 3rem auto;
-    }
-
-    .section-title-wrapper h2 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title-wrapper p {
-      color: var(--text-muted);
-      margin: 0;
-    }
-
-    .project-filters {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .filter-btn {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-muted);
-      padding: 0.5rem 1.2rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      border-color: var(--accent-steel);
-      color: var(--accent-steel);
-      background: rgba(56, 189, 248, 0.05);
-    }
-
-    .carousel-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      padding: 1rem 0;
-    }
-
-    .carousel-track {
-      display: flex;
-      gap: 24px;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform;
-    }
-
-    .carousel-nav-btn {
-      background-color: var(--bg-card);
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-    }
-
-    .carousel-nav-btn:hover {
-      border-color: var(--accent-steel);
-      color: var(--accent-steel);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
-    }
-
-    .carousel-nav-btn.prev { left: 10px; }
-    .carousel-nav-btn.next { right: 10px; }
-
-    .project-card {
-      background-color: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      border-radius: 6px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 520px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-steel);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    }
-
-    .card-header-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .card-category {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--accent-steel);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .card-specs-sf {
-      font-size: 0.75rem;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent-light);
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-weight: 600;
-    }
-
-    .project-card h3 {
-      font-size: 1.35rem;
-      line-height: 1.3;
-      margin-bottom: 0.4rem;
-    }
-
-    .project-card .card-location {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-    }
-
-    .card-content-scroll {
-      flex-grow: 1;
-      overflow-y: auto;
-      margin-bottom: 1.5rem;
-      padding-right: 0.3rem;
-    }
-
-    .card-content-scroll::-webkit-scrollbar {
-      width: 3px;
-    }
-    .card-content-scroll::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-    }
-
-    .card-detail {
-      font-size: 0.82rem;
-      margin-bottom: 1rem;
-    }
-
-    .card-detail strong {
-      color: var(--text-main);
-      display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.2rem;
-    }
-
-    .card-detail p {
-      color: var(--text-muted);
-      margin: 0;
-    }
-
-    .card-footer-tags {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 1rem;
-    }
-
-    .scope-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .scope-tags span {
-      font-size: 0.68rem;
-      background-color: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      padding: 0.2rem 0.5rem;
-      border-radius: 3px;
-    }
-
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 2rem;
-    }
-
-    .carousel-dots .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.15);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .carousel-dots .dot.active {
-      background-color: var(--accent-steel);
-      width: 24px;
-      border-radius: 4px;
-    }
-
-    /* --- CONTACT SECTION --- */
-    .contact {
-      background-color: var(--bg-card);
-      position: relative;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .contact-info h2 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .contact-subtext {
-      color: var(--text-muted);
-      margin-bottom: 2.5rem;
-    }
-
-    .info-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-    }
-
-    .info-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid var(--border-thin);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-steel);
-      font-size: 1.1rem;
-    }
-
-    .info-text h4 {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-bottom: 0.2rem;
-    }
-
-    .info-text p {
-      font-size: 1.05rem;
-      font-weight: 500;
-      margin: 0;
-    }
-
-    /* Premium Form Styles */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .form-group label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .form-input {
-      background-color: var(--bg-input);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 4px;
-      padding: 1rem;
-      color: var(--text-main);
-      font-family: inherit;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--accent-steel);
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
-    }
-
-    textarea.form-input {
-      resize: vertical;
-      min-height: 150px;
-    }
-
-    /* --- FOOTER --- */
-    .footer {
-      background-color: var(--bg-dark);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 3rem 5%;
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
-    }
-
-    .footer-copyright {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* --- RESPONSIVE MEDIA QUERIES --- */
-    @media (max-width: 1024px) {
-      .about-grid, .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 3.5rem;
-      }
-      .about-image {
-        height: 400px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: var(--nav-height);
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: rgba(15, 23, 42, 0.98);
-        padding: 2rem;
-        gap: 1.5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        align-items: center;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-      }
-
-      .carousel-container {
-        padding: 1rem 40px; 
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grey Mountain Mechanical | HVAC Engineering Solutions</title>
+    <style>
+        :root {
+            --primary-dark: #2A313C; /* Your signature blue/grey */
+            --accent-blue: #3A4750;
+            --secondary-light: #F9F9F9;
+            --text-dark: #222222;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--secondary-light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+            font-weight: normal;
+        }
+
+        /* Top RIGHT Navigation */
+        nav {
+            position: absolute;
+            top: 30px;
+            right: 5%;
+            z-index: 10;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-light);
+        }
+
+        /* Hero Landing Section with Fade Effect */
+        .hero {
+            height: 100vh;
+            position: relative;
+            background-color: var(--primary-dark); /* Starts as your signature solid blue */
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Smoothly fades the mountain image in over the blue background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* CAPITALIZED IMAGE NAME FIXED HERE */
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url('Grey Mountain Render.png') no-repeat center center/cover;
+            opacity: 0;
+            animation: fadeImageIn 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            z-index: 1;
+        }
+
+        @keyframes fadeImageIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Ultra-Smooth Center-to-Left Text Glide */
+        .hero-content {
+            position: absolute;
+            z-index: 2;
+            width: auto;
+            white-space: nowrap;
+            text-align: left; /* Left-aligned layout from 0% to 100% prevents layout snapping */
+            animation: centerToLeftSmooth 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes centerToLeftSmooth {
+            0% {
+                left: 50%;
+                transform: translateX(-50%); /* Mathematically centers the block perfectly */
+            }
+            100% {
+                left: 8%;
+                transform: translateX(0); /* Glides into its final left alignment seamlessly */
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 8%;
+            background-color: #FFFFFF;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.15rem;
+            color: #555;
+        }
+
+        /* Projects Sliding Carousel Section */
+        .projects-section {
+            padding: 100px 5%;
+            background-color: #1A1F26;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .projects-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #242B35;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 450px;
+        }
+
+        /* Responsive stack for smaller screens */
+        @media (max-width: 768px) {
+            .slide {
+                grid-template-columns: 1fr;
+            }
+            @keyframes centerToLeftSmooth {
+                0%, 100% { left: 50%; transform: translateX(-50%); }
+            }
+        }
+
+        .slide-image {
+            background-size: cover;
+            background-position: center;
+            background-color: #1A1F26;
+            min-height: 300px;
+        }
+
+        .slide-content {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #FFF;
+        }
+
+        .slide-content .location {
+            font-size: 0.95rem;
+            color: #A0AAB5;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .slide-content p {
+            font-size: 1.05rem;
+            color: #D1D7DD;
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 5;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 5%;
+            background-color: #FFFFFF;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 40px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            background-color: #fafafa;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form button {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--accent-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111418;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+
+        footer a {
+            color: #FFF;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- --- NAVIGATION HEADER --- -->
-  <header class="navbar">
-    <div class="logo-container">
-      <div class="logo-main">Grey Mountain</div>
-      <div class="logo-sub">Mechanical</div>
-    </div>
-    
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <div class="menu-toggle" id="mobileMenu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-  </header>
-
-  <!-- --- HERO SECTION --- -->
-  <section id="home" class="hero">
-    <h1 class="hero-title">Precision HVAC &<br><span>Plumbing Design</span></h1>
-    <p class="hero-subtitle">State-of-the-art engineering solutions engineered with code compliance, cost efficiency, and long-term maintainability in mind.</p>
-    <div class="hero-cta-container">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-    </div>
-  </section>
-
-  <!-- --- ABOUT ME SECTION --- -->
-  <section id="about" class="about section-padding reveal">
-    <div class="about-grid">
-      <div class="about-image-wrapper">
-        <img src="image_45c607.jpg" alt="Enoch - Principal Mechanical Engineer" class="about-image">
-      </div>
-      
-      <div class="about-text-column">
-        <span class="about-tag">About Me</span>
-        <h2 class="about-title">Meet Enoch &amp; Grey Mountain Mechanical</h2>
-        <p class="about-bio">
-          Based in Utah, Grey Mountain Mechanical provides top-tier mechanical and plumbing design solutions for complex commercial, light industrial, and hospitality projects. Led by Enoch, we specialize in high-efficiency load calculations, custom HVAC air-handling architectures, and high-precision sanitary plumbing designs.
-        </p>
-        <p class="about-bio">
-          Every project is built upon rigorous direct coordination with architects, general contractors, and owners to guarantee that spaces remain seamlessly ventilated, functional, and fully code-compliant.
-        </p>
-        
-        <div class="about-stats">
-          <div class="stat-item">
-            <div class="stat-number">500k+</div>
-            <div class="stat-label">SQ. FT. Flex Warehousing</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">101k+</div>
-            <div class="stat-label">SQ. FT. Event Arenas</div>
-          </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Grey Mountain</h1>
+            <p>Mechanical</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- --- PROJECTS SECTION (CAROUSEL) --- -->
-  <section id="projects" class="projects section-padding reveal">
-    <div class="section-header">
-      <div class="section-title-wrapper">
-        <h2>Featured Projects</h2>
-        <p>A selection of mechanical & plumbing engineering milestones across Utah.</p>
-      </div>
-    </div>
-
-    <div class="project-filters">
-      <button class="filter-btn active" data-filter="all">All Projects</button>
-      <button class="filter-btn" data-filter="hospitality">Hospitality & Food</button>
-      <button class="filter-btn" data-filter="commercial">Commercial Office</button>
-      <button class="filter-btn" data-filter="industrial">Industrial & Gym</button>
-      <button class="filter-btn" data-filter="medical">Medical & Other</button>
-    </div>
-
-    <div class="carousel-container">
-      <button class="carousel-nav-btn prev" id="prevBtn" aria-label="Previous Slide">&#10094;</button>
-      
-      <div class="carousel-track" id="projectTrack">
-        
-        <!-- Card 1: Siempre Utah -->
-        <div class="project-card" data-category="hospitality">
-          <div class="card-header-meta">
-            <span class="card-category">Hospitality</span>
-            <span class="card-specs-sf">10,000 SF</span>
-          </div>
-          <h3>Siempre Utah Reception Center</h3>
-          <p class="card-location">Draper, UT | 2020</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>State-of-the-art VRF system configuration for an elegant reception center with a full-service commercial kitchen located in the basement.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Locating complex air conditioning structures entirely inside a narrow, recessed rooftop well while maintaining proper clearances.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Successfully arranged code-conforming equipment spots inside the visual boundaries without changing the building's facade.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Load Calculations</span>
-              <span>HVAC Design</span>
-              <span>Kitchen Equipment</span>
-              <span>Plumbing Design</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: Hearth & Hill -->
-        <div class="project-card" data-category="hospitality">
-          <div class="card-header-meta">
-            <span class="card-category">Hospitality</span>
-            <span class="card-specs-sf">6,300 SF</span>
-          </div>
-          <h3>Hearth and Hill Restaurant</h3>
-          <p class="card-location">Sugar House, UT | 2024</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Ground-floor high-end restaurant tenant improvement featuring three massive kitchen hoods and a distinct standalone island bar layout.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Fitting all commercial kitchen infrastructure and air conditioning equipment within low-clearance drop ceiling boundaries of an already built 7-story structure.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Coordinated with multiple sub-contractors and owners to mount and balance all equipment exactly on time.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Load Calculations</span>
-              <span>HVAC Design</span>
-              <span>Kitchen Design</span>
-              <span>Plumbing Design</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Hills Kitchen -->
-        <div class="project-card" data-category="hospitality">
-          <div class="card-header-meta">
-            <span class="card-category">Hospitality</span>
-            <span class="card-specs-sf">5,000 SF</span>
-          </div>
-          <h3>Hills Kitchen Restaurant</h3>
-          <p class="card-location">Sugar House, UT | 2024</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Fast-casual restaurant TI with outdoor seating options and a full-scale commercial commercial kitchen setup.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Cramped drop ceilings with restricted maintenance entries and strict coordination of exterior vent penetrations near dining zones.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Constructed an aesthetic, safe, and code-compliant exhaust and fresh-air intake configuration.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Load Calculations</span>
-              <span>HVAC Design</span>
-              <span>Plumbing Design</span>
-              <span>Kitchen Equipment</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Black Rock Event Center -->
-        <div class="project-card" data-category="medical">
-          <div class="card-header-meta">
-            <span class="card-category">Arena & Public</span>
-            <span class="card-specs-sf">101,000 SF</span>
-          </div>
-          <h3>Black Rock Event Center</h3>
-          <p class="card-location">Park City, UT | 2023</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Massive ice rink arena and event space for 3,000 guests including heavy locker rooms, weight rooms, and executive complexes.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Brought onto the project on short notice with requirements to fast-track complete DD sets in under two weeks while working around pre-built parameters.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Responded rapidly to on-site issues and RFI inquiries, delivering a highly efficient mechanical layout.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>HVAC Duct Layout</span>
-              <span>Kitchen Design</span>
-              <span>Construction Admin</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5: Farmington Flex -->
-        <div class="project-card" data-category="industrial">
-          <div class="card-header-meta">
-            <span class="card-category">Industrial</span>
-            <span class="card-specs-sf">500,000 SF</span>
-          </div>
-          <h3>Farmington Flex Warehouse</h3>
-          <p class="card-location">Farmington, UT | 2023</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Four massive tilt-up cold-shell warehouses equipped with full freeze protection and customized for future layout changes.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>The vast length of the structures risked sewer plumbing depths falling too low for connection with municipal city lines.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Sewer depth was coordinated, upsized with minimal slope parameters, and built with zero post-con issues.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Plumbing Design</span>
-              <span>HVAC System</span>
-              <span>Construction Admin</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 6: Heritage School -->
-        <div class="project-card" data-category="commercial">
-          <div class="card-header-meta">
-            <span class="card-category">Commercial</span>
-            <span class="card-specs-sf">6,000 SF</span>
-          </div>
-          <h3>Heritage School Admin Building</h3>
-          <p class="card-location">Provo, UT | 2024</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Custom administrative facility designed with a premium, multi-zone VRF climate layout and highly efficient ERV system.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Strict instruction from the owner to completely avoid visible mechanical infrastructure or exhaust vents on the rooftop surface.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Spearheaded under-eave duct penetration locations hidden completely from public street viewpoints.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>VRF & ERV System</span>
-              <span>HVAC Design</span>
-              <span>Plumbing Design</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 7: Brite Family Dental -->
-        <div class="project-card" data-category="medical">
-          <div class="card-header-meta">
-            <span class="card-category">Medical</span>
-            <span class="card-specs-sf">5,000 SF</span>
-          </div>
-          <h3>Brite Family Dental Office</h3>
-          <p class="card-location">American Fork, UT | 2022</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Comprehensive layout of a modern clinic featuring over 20 dental care chairs and two separate dental surgery theaters.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Complex, heavily constrained surgical lines, water utility channels, and suction piping routing requirements to every operator chair.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Pre-slab planning was executed successfully, and central compressor equipment was located in the basement with dedicated air lines.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Dental Plumbing</span>
-              <span>HVAC Design</span>
-              <span>Slab Conduits</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 8: The Front Gym Addition -->
-        <div class="project-card" data-category="industrial">
-          <div class="card-header-meta">
-            <span class="card-category">Gym & Fitness</span>
-            <span class="card-specs-sf">30,000 SF</span>
-          </div>
-          <h3>The Front Climbing Addition</h3>
-          <p class="card-location">Salt Lake City, UT | 2022</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>A massive climbing club addition containing professional climbing walls, saunas, structural facilities, and cardio spaces.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Required breaking construction layout steps into four distinct phases so active gym spaces could remain open safely.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>The remodeling steps were executed and connected successfully with zero structural change orders.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Phase Planning</span>
-              <span>HVAC Layout</span>
-              <span>Plumbing Systems</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 9: Dragon Steel -->
-        <div class="project-card" data-category="industrial">
-          <div class="card-header-meta">
-            <span class="card-category">Industrial</span>
-            <span class="card-specs-sf">40,000 SF</span>
-          </div>
-          <h3>Dragon Steel Warehouse</h3>
-          <p class="card-location">Pleasant Grove, UT | 2023</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Cost-effective warehouse storage TI with an integrated single-level administration area.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Value-engineer a highly reliable and durable climate layout on a strictly minimized budget constraint.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Designed a standard office furnace layout paired with modern High-Volume Low-Speed (HVLS) ceiling fans in the storage bay to maximize airflow.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Value Engineering</span>
-              <span>HVAC Design</span>
-              <span>HVLS Systems</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 10: ABS Kids -->
-        <div class="project-card" data-category="commercial">
-          <div class="card-header-meta">
-            <span class="card-category">Commercial</span>
-            <span class="card-specs-sf">3,000 SF</span>
-          </div>
-          <h3>ABS Kids Therapy Center</h3>
-          <p class="card-location">South Jordan, UT | 2024</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Clinic space TI inside the ground-floor layout of an active corporate office development.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Integrating several additional patient washrooms requiring major additional exhaust air capacities beyond the core structure design limits.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Located and detailed an elegant, side-wall penetration structure that bypassed roof limitations smoothly.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>VRF Integration</span>
-              <span>Exhaust Layout</span>
-              <span>Construction Admin</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 11: Jump TI -->
-        <div class="project-card" data-category="industrial">
-          <div class="card-header-meta">
-            <span class="card-category">Industrial</span>
-            <span class="card-specs-sf">3,000 SF</span>
-          </div>
-          <h3>Jump TI Buildout</h3>
-          <p class="card-location">Bluffdale, UT | 2022</p>
-          <div class="card-content-scroll">
-            <div class="card-detail">
-              <strong>Overview</strong>
-              <p>Amusement facility buildout using dedicated RTU hardware and customized jumping bays.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Key Challenge</strong>
-              <p>Jumping trampoline lines required vast vertical overhead space constraints, leaving very narrow pathways for main duct channels.</p>
-            </div>
-            <div class="card-detail">
-              <strong>Outcome</strong>
-              <p>Arranged and modeled tight, high-aspect duct runs satisfying clearances while delivering complete structural climate flow.</p>
-            </div>
-          </div>
-          <div class="card-footer-tags">
-            <div class="scope-tags">
-              <span>Roof Top Units</span>
-              <span>Clearance Planning</span>
-              <span>Duct Routing</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      
-      <button class="carousel-nav-btn next" id="nextBtn" aria-label="Next Slide">&#10095;</button>
-    </div>
-    
-    <div class="carousel-dots" id="carouselDots"></div>
-  </section>
-
-  <!-- --- CONTACT SECTION WITH WORKING KEY --- -->
-  <section id="contact" class="contact section-padding reveal">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h2>Get in Touch</h2>
-        <p class="contact-subtext">Have an upcoming mechanical or plumbing engineering design project? Reach out to Enoch directly to review your project plans and engineering needs.</p>
-        
-        <div class="info-details">
-          <div class="info-item">
-            <div class="info-icon">&#9742;</div>
-            <div class="info-text">
-              <h4>Phone</h4>
-              <p><a href="tel:3852018843">385-201-8843</a></p>
-            </div>
-          </div>
-          
-          <div class="info-item">
-            <div class="info-icon">&#9993;</div>
-            <div class="info-text">
-              <h4>Email</h4>
-              <p><a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Fully Functional Form -->
-      <div>
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <!-- Live API key embedded -->
-          <input type="hidden" name="access_key" value="5f4d0345-4041-4928-9422-c31c9921a0d8">
-          
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="johndoe@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message Details</label>
-            <textarea id="message" name="message" class="form-input" placeholder="Describe your project, size, and timeline..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- --- FOOTER --- -->
-  <footer class="footer">
-    <div class="footer-logo">Grey Mountain Mechanical</div>
-    <p class="footer-copyright">&copy; 2026 Grey Mountain Mechanical. All rights reserved.</p>
-  </footer>
-
-  <!-- --- WEBSITE LOGIC --- -->
-  <script>
-    /* --- MOBILE RESPONSIVE NAV TOGGLE --- */
-    const mobileMenu = document.getElementById('mobileMenu');
-    const navLinksList = document.getElementById('navLinks');
-
-    mobileMenu.addEventListener('click', () => {
-      navLinksList.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinksList.classList.remove('active');
-        mobileMenu.classList.remove('active');
-      });
-    });
-
-    /* --- SCROLL REVEAL OBSERVER --- */
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); 
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(el => {
-      revealObserver.observe(el);
-    });
-
-    /* --- ACTIVE SECTION NAV HIGHLIGHTING --- */
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      const scrollPosition = window.scrollY || window.pageYOffset;
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollPosition >= (sectionTop - 150)) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navItems.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    /* --- CAROUSEL TRACK LOGIC --- */
-    const track = document.getElementById('projectTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('carouselDots');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-
-    const allCards = Array.from(track.children);
-    let filteredCards = [...allCards];
-    let currentIndex = 0;
-    let cardsToShow = 3;
-
-    function getCardsToShow() {
-      if (window.innerWidth < 768) return 1;
-      if (window.innerWidth < 1100) return 2;
-      return 3;
-    }
-
-    function updateCarousel() {
-      cardsToShow = getCardsToShow();
-      const maxIndex = Math.max(0, filteredCards.length - cardsToShow);
-      
-      if (currentIndex > maxIndex) currentIndex = maxIndex;
-      if (currentIndex < 0) currentIndex = 0;
-
-      const trackWidth = track.clientWidth;
-      const gap = 24; 
-      const cardWidth = filteredCards.length > 0 
-        ? (trackWidth - (cardsToShow - 1) * gap) / cardsToShow 
-        : 0;
-
-      allCards.forEach(card => {
-        if (filteredCards.includes(card)) {
-          card.style.display = 'flex';
-          card.style.minWidth = `${cardWidth}px`;
-          card.style.maxWidth = `${cardWidth}px`;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      const offset = currentIndex * (cardWidth + gap);
-      track.style.transform = `translateX(-${offset}px)`;
-
-      updateDots(maxIndex);
-
-      prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
-      prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-      nextBtn.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
-      nextBtn.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
-    }
-
-    function updateDots(maxIndex) {
-      dotsContainer.innerHTML = '';
-      if (filteredCards.length <= cardsToShow) return;
-
-      const totalDots = maxIndex + 1;
-      for (let i = 0; i < totalDots; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (i === currentIndex) dot.classList.add('active');
-        
-        dot.addEventListener('click', () => {
-          currentIndex = i;
-          updateCarousel();
-        });
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    nextBtn.addEventListener('click', () => {
-      cardsToShow = getCardsToShow();
-      if (currentIndex < filteredCards.length - cardsToShow) {
-        currentIndex++;
-        updateCarousel();
-      }
-    });
-
-    prevBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
-      }
-    });
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-
-        const filterValue = e.target.getAttribute('data-filter');
-        
-        if (filterValue === 'all') {
-          filteredCards = [...allCards];
-        } else {
-          filteredCards = allCards.filter(card => card.getAttribute('data-category') === filterValue);
-        }
-
-        currentIndex = 0;
-        track.style.transform = 'translateX(0px)';
-        updateCarousel();
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      updateCarousel();
-    });
-
-    setTimeout(() => {
-      updateCarousel();
-    }, 150);
-  </script>
-</body>
-</html>
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>Grey Mountain Mechanical provides elite HVAC engineering solutions, specialized structural load calculations, and precision mechanical layouts designed to stand up to the toughest environmental demands.</p>
+    </section>
