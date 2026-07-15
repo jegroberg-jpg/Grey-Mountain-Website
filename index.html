@@ -6,329 +6,56 @@
     <title>Grey Mountain Mechanical | HVAC Engineering Solutions</title>
     <style>
         :root {
-            --primary-dark: #2A313C; /* Your signature blue/grey */
+            --primary-dark: #2A313C;
             --accent-blue: #3A4750;
             --secondary-light: #F9F9F9;
             --text-dark: #222222;
             --text-light: #FFFFFF;
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-dark); line-height: 1.6; background-color: var(--secondary-light); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Georgia', serif; font-weight: normal; }
+        
+        /* Nav */
+        nav { position: absolute; top: 30px; right: 5%; z-index: 10; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s ease; }
+        nav a:hover { color: var(--text-light); }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--secondary-light);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Georgia', serif;
-            font-weight: normal;
-        }
-
-        /* Top RIGHT Navigation */
-        nav {
-            position: absolute;
-            top: 30px;
-            right: 5%;
-            z-index: 10;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--text-light);
-        }
-
-        /* Hero Landing Section with Fade Effect */
-        .hero {
-            height: 100vh;
-            position: relative;
-            background-color: var(--primary-dark); /* Starts as your signature solid blue */
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Smoothly fades the mountain image in over the blue background */
+        /* Hero */
+        .hero { height: 100vh; position: relative; background-color: var(--primary-dark); color: var(--text-light); display: flex; align-items: center; overflow: hidden; }
+        
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* CAPITALIZED IMAGE NAME FIXED HERE */
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url('Grey Mountain Render.png') no-repeat center center/cover;
             opacity: 0;
-            animation: fadeImageIn 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            /* 2s delay added here */
+            animation: fadeImageIn 4s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
             z-index: 1;
         }
 
-        @keyframes fadeImageIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+        @keyframes fadeImageIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-        /* Ultra-Smooth Center-to-Left Text Glide */
         .hero-content {
-            position: absolute;
-            z-index: 2;
-            width: auto;
-            white-space: nowrap;
-            text-align: left; /* Left-aligned layout from 0% to 100% prevents layout snapping */
-            animation: centerToLeftSmooth 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            position: absolute; z-index: 2; width: auto; white-space: nowrap; text-align: left;
+            /* 2s delay added here */
+            animation: centerToLeftSmooth 3s cubic-bezier(0.25, 1, 0.5, 1) 2s forwards;
         }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 5px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.8);
-        }
+        .hero h1 { font-size: 3.5rem; letter-spacing: 4px; text-transform: uppercase; line-height: 1.1; margin-bottom: 5px; }
+        .hero p { font-size: 1.3rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.8); }
 
         @keyframes centerToLeftSmooth {
-            0% {
-                left: 50%;
-                transform: translateX(-50%); /* Mathematically centers the block perfectly */
-            }
-            100% {
-                left: 8%;
-                transform: translateX(0); /* Glides into its final left alignment seamlessly */
-            }
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 100px 8%;
-            background-color: #FFFFFF;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-section h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 20px;
-        }
-
-        .about-section p {
-            font-size: 1.15rem;
-            color: #555;
-        }
-
-        /* Projects Sliding Carousel Section */
-        .projects-section {
-            padding: 100px 5%;
-            background-color: #1A1F26;
-            color: var(--text-light);
-            position: relative;
-        }
-
-        .projects-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            letter-spacing: 1px;
-        }
-
-        .carousel-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow: hidden;
-            background: #242B35;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-radius: 4px;
-        }
-
-        .carousel-track {
-            display: flex;
-            width: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .slide {
-            flex: 0 0 100%;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 450px;
-        }
-
-        /* Responsive stack for smaller screens */
-        @media (max-width: 768px) {
-            .slide {
-                grid-template-columns: 1fr;
-            }
-            @keyframes centerToLeftSmooth {
-                0%, 100% { left: 50%; transform: translateX(-50%); }
-            }
-        }
-
-        .slide-image {
-            background-size: cover;
-            background-position: center;
-            background-color: #1A1F26;
-            min-height: 300px;
-        }
-
-        .slide-content {
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .slide-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            color: #FFF;
-        }
-
-        .slide-content .location {
-            font-size: 0.95rem;
-            color: #A0AAB5;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .slide-content p {
-            font-size: 1.05rem;
-            color: #D1D7DD;
-        }
-
-        /* Carousel Navigation Buttons */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.4);
-            color: white;
-            border: none;
-            font-size: 2rem;
-            padding: 10px 15px;
-            cursor: pointer;
-            z-index: 5;
-            transition: background 0.3s;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(0,0,0,0.8);
-        }
-
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 100px 5%;
-            background-color: #FFFFFF;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .contact-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 40px;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            background-color: #fafafa;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .contact-form button {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background 0.3s ease;
-        }
-
-        .contact-form button:hover {
-            background-color: var(--accent-blue);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #111418;
-            color: rgba(255,255,255,0.6);
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-            border-top: 1px solid #222;
-        }
-
-        footer a {
-            color: #FFF;
-            text-decoration: none;
+            0% { left: 50%; transform: translateX(-50%); }
+            100% { left: 8%; transform: translateX(0); }
         }
     </style>
 </head>
 <body>
-
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#about">About</a></li>
         </ul>
     </nav>
 
@@ -338,89 +65,5 @@
             <p>Mechanical</p>
         </div>
     </section>
-
-    <section id="about" class="about-section">
-        <h2>About Us</h2>
-        <p>Grey Mountain Mechanical provides elite HVAC engineering solutions, specialized structural load calculations, and precision mechanical layouts designed to stand up to the toughest environmental demands.</p>
-    </section>
-
-    <section id="projects" class="projects-section">
-        <h2>Featured Projects</h2>
-        
-        <div class="carousel-container">
-            <div class="carousel-track">
-                <div class="slide">
-                    <div class="slide-image" style="background-image: url('project1.jpg');"></div>
-                    <div class="slide-content">
-                        <h3>Siempre Utah Reception Center</h3>
-                        <p class="location">Draper, UT | 10,000 SF</p>
-                        <p>VRF system design for an upscale reception center featuring a comprehensive, full-service commercial kitchen space optimized efficiently inside the basement layout.</p>
-                    </div>
-                </div>
-
-                <div class="slide">
-                    <div class="slide-image" style="background-image: url('project2.jpg');"></div>
-                    <div class="slide-content">
-                        <h3>The Front Climbing Addition</h3>
-                        <p class="location">Salt Lake City, UT | 30,000 SF</p>
-                        <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel. Designed to accommodate climbing walls, custom saunas, and intense workout facilities deployed smoothly across 4 phases.</p>
-                    </div>
-                </div>
-
-                <div class="slide">
-                    <div class="slide-image" style="background-image: url('project3.jpg');"></div>
-                    <div class="slide-content">
-                        <h3>Dragon Steel Warehouse</h3>
-                        <p class="location">Pleasant Grove, UT | 40,000 SF</p>
-                        <p>Industrial warehouse combined with corporate office spaces. Implemented tailored furnace systems and high-volume low-speed (HVLS) fans to massively step up interior comfort profiles while protecting bottom-line utility operational costs.</p>
-                    </div>
-                </div>
-            </div>
-
-            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <h2>Get in Touch</h2>
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="5f4d0345-4041-4928-9422-c31c9921a0d8">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email Address" required>
-            <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>Grey Mountain Mechanical &copy; 2026 | Phone: <a href="tel:3852018843">385-201-8843</a> | Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
-    </footer>
-
-    <script>
-        let currentSlideIndex = 0;
-        const track = document.querySelector('.carousel-track');
-        const slides = document.querySelectorAll('.slide');
-        
-        function showSlide(index) {
-            currentSlideIndex = (index + slides.length) % slides.length;
-            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-        }
-
-        function moveSlide(step) {
-            showSlide(currentSlideIndex + step);
-        }
-
-        let autoCycle = setInterval(() => {
-            moveSlide(1);
-        }, 5000);
-
-        document.querySelectorAll('.carousel-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                clearInterval(autoCycle);
-                autoCycle = setInterval(() => { moveSlide(1); }, 5000);
-            });
-        });
-    </script>
 </body>
 </html>
