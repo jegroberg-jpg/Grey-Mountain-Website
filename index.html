@@ -5,27 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grey Mountain Mechanical | HVAC & Plumbing Design</title>
   
+  <!-- Google Fonts for Modern, Tech-Premium Look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
+  <script>
+    // Progressive Enhancement: Immediately add 'js' class to html to enable fade-in animations.
+    // If JS is disabled or delayed, the site remains fully visible and never stuck on a black screen!
+    document.documentElement.classList.add('js');
+  </script>
+
   <style>
     /* --- COLOR SYSTEM & BASE SETUP --- */
     :root {
-      --bg-dark: #111112;          /* Deep rich charcoal */
-      --bg-card: #18181c;          /* Slightly lighter charcoal for cards */
-      --bg-input: #1f1f24;         /* Input field charcoal */
-      --accent-copper: #cf8a3c;    /* Premium Warm Copper */
-      --accent-light: #e5a85c;     /* Lighter highlighting bronze */
-      --text-main: #f5f5f7;        /* Crisp, premium white */
-      --text-muted: #9a9a9f;       /* Muted grey for descriptions */
-      --border-thin: rgba(207, 138, 60, 0.15); /* Subtle copper-accented border */
+      --bg-dark: #0f172a;          /* Deep Slate Navy (Rich and clean) */
+      --bg-card: #1e293b;          /* Sleek Slate Gray for cards */
+      --bg-input: #334155;         /* Lighter slate for input fields */
+      --accent-steel: #38bdf8;     /* Vibrant, premium Ice Blue */
+      --accent-light: #7dd3fc;     /* Soft highlight blue */
+      --text-main: #f8fafc;        /* Crisp cool white */
+      --text-muted: #94a3b8;       /* Muted blue-grey */
+      --border-thin: rgba(56, 189, 248, 0.15); 
       --nav-height: 80px;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: var(--nav-height); /* Prevent nav overlap during smooth scroll */
+      scroll-padding-top: var(--nav-height); 
       box-sizing: border-box;
     }
 
@@ -58,23 +65,30 @@
       transition: all 0.3s ease;
     }
 
-    /* --- PREMIUM HELPER STYLES --- */
     .section-padding {
       padding: 6rem 5% 7rem 5%;
     }
 
+    /* --- PROGRESSIVE ENHANCEMENT REVEAL ANIMATIONS --- */
+    /* By default, all content is fully visible. No blank screens. */
     .reveal {
-      opacity: 0;
-      transform: translateY(40px);
+      opacity: 1;
+      transform: none;
       transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .reveal.visible {
+    /* Only hide elements dynamically if JavaScript executes successfully */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .js .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* --- FIXED NAVIGATION BAR (RIGHT-ALIGNED) --- */
+    /* --- FIXED NAVIGATION BAR --- */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -85,11 +99,10 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(17, 17, 18, 0.95);
+      background-color: rgba(15, 23, 42, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       z-index: 1000;
-      transition: background-color 0.3s ease;
     }
 
     .logo-container {
@@ -102,18 +115,16 @@
       font-size: 1.3rem;
       font-weight: 700;
       letter-spacing: 2px;
-      color: var(--text-main);
     }
 
     .logo-sub {
       font-size: 0.65rem;
       letter-spacing: 4px;
-      color: var(--accent-copper);
+      color: var(--accent-steel);
       text-transform: uppercase;
       margin-top: -2px;
     }
 
-    /* Floating Menu Links on Right Side */
     .nav-links {
       display: flex;
       list-style: none;
@@ -133,10 +144,9 @@
     }
 
     .nav-links a:hover, .nav-links a.active {
-      color: var(--accent-copper);
+      color: var(--accent-steel);
     }
 
-    /* Bottom Line Hover Transition */
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -144,7 +154,7 @@
       height: 2px;
       bottom: 0;
       left: 0;
-      background-color: var(--accent-copper);
+      background-color: var(--accent-steel);
       transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -152,7 +162,6 @@
       width: 100%;
     }
 
-    /* Hamburger Menu for Responsive Views */
     .menu-toggle {
       display: none;
       cursor: pointer;
@@ -164,22 +173,32 @@
       width: 24px;
       height: 2px;
       background-color: var(--text-main);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* --- HERO SECTION WITH STAGGERED INTRO --- */
+    .menu-toggle.active .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* --- HERO SECTION WITH MOUNTAIN BACKGROUND --- */
     .hero {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 0 10%;
-      background: radial-gradient(circle at 80% 30%, rgba(207, 138, 60, 0.08), transparent 50%),
-                  linear-gradient(135deg, #111112 0%, #17171d 100%);
+      /* Premium dark image overlay paired with your local mountain asset */
+      background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.9)), 
+                  url('Grey Mountain Render.png') no-repeat center center / cover;
       position: relative;
     }
 
-    /* Delayed, Noticeable Text-Glide Transitions */
     .hero-title {
       font-family: 'Cinzel', serif;
       font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -187,14 +206,10 @@
       line-height: 1.1;
       margin-bottom: 1.5rem;
       letter-spacing: 1px;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.5s; /* Stagger start */
     }
 
     .hero-title span {
-      color: var(--accent-copper);
+      color: var(--accent-steel);
     }
 
     .hero-subtitle {
@@ -203,19 +218,33 @@
       max-width: 600px;
       margin-bottom: 2.5rem;
       font-weight: 300;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.9s; /* Secondary delay to notice slide */
     }
 
     .hero-cta-container {
       display: flex;
       gap: 1.5rem;
+    }
+
+    /* Staggered glide transitions (only active when JS is enabled) */
+    .js .hero-title {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0.3s;
+    }
+
+    .js .hero-subtitle {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0.6s;
+    }
+
+    .js .hero-cta-container {
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 1.3s; /* Final CTA delay */
+      animation-delay: 0.9s;
     }
 
     .btn {
@@ -231,16 +260,16 @@
     }
 
     .btn-primary {
-      background-color: var(--accent-copper);
+      background-color: var(--accent-steel);
       color: var(--bg-dark);
-      border: 1px solid var(--accent-copper);
+      border: 1px solid var(--accent-steel);
     }
 
     .btn-primary:hover {
       background-color: transparent;
-      color: var(--accent-copper);
+      color: var(--accent-steel);
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(207, 138, 60, 0.15);
+      box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
     }
 
     .btn-secondary {
@@ -250,8 +279,8 @@
     }
 
     .btn-secondary:hover {
-      border-color: var(--accent-copper);
-      color: var(--accent-copper);
+      border-color: var(--accent-steel);
+      color: var(--accent-steel);
       transform: translateY(-3px);
     }
 
@@ -266,7 +295,7 @@
       }
     }
 
-    /* --- ABOUT US SECTION (SIDE BY SIDE LAYOUT) --- */
+    /* --- ABOUT US SECTION --- */
     .about {
       background-color: var(--bg-card);
     }
@@ -280,12 +309,10 @@
       margin: 0 auto;
     }
 
-    /* Picture Layout Frame styling */
     .about-image-wrapper {
       position: relative;
     }
 
-    /* Profile picture on one side */
     .about-image {
       width: 100%;
       height: 500px;
@@ -293,10 +320,8 @@
       border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      filter: grayscale(10%);
     }
 
-    /* Visual Copper Frame Decoration */
     .about-image-wrapper::before {
       content: '';
       position: absolute;
@@ -304,8 +329,8 @@
       left: -15px;
       width: 100px;
       height: 100px;
-      border-top: 3px solid var(--accent-copper);
-      border-left: 3px solid var(--accent-copper);
+      border-top: 3px solid var(--accent-steel);
+      border-left: 3px solid var(--accent-steel);
       z-index: 1;
     }
 
@@ -316,17 +341,16 @@
       right: -15px;
       width: 100px;
       height: 100px;
-      border-bottom: 3px solid var(--accent-copper);
-      border-right: 3px solid var(--accent-copper);
+      border-bottom: 3px solid var(--accent-steel);
+      border-right: 3px solid var(--accent-steel);
       z-index: 1;
     }
 
-    /* Description to the side styling */
     .about-tag {
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--accent-copper);
+      color: var(--accent-steel);
       margin-bottom: 0.5rem;
       display: block;
     }
@@ -359,7 +383,7 @@
     .stat-number {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--accent-copper);
+      color: var(--accent-steel);
       margin-bottom: 0.2rem;
     }
 
@@ -370,7 +394,7 @@
       letter-spacing: 1px;
     }
 
-    /* --- DYNAMIC PROJECTS CAROUSEL SECTION --- */
+    /* --- PROJECTS SECTION (DYNAMIC CAROUSEL) --- */
     .projects {
       background-color: var(--bg-dark);
       position: relative;
@@ -394,7 +418,6 @@
       margin: 0;
     }
 
-    /* Category Filter Badges */
     .project-filters {
       display: flex;
       gap: 0.8rem;
@@ -419,12 +442,11 @@
     }
 
     .filter-btn:hover, .filter-btn.active {
-      border-color: var(--accent-copper);
-      color: var(--accent-copper);
-      background: rgba(207, 138, 60, 0.05);
+      border-color: var(--accent-steel);
+      color: var(--accent-steel);
+      background: rgba(56, 189, 248, 0.05);
     }
 
-    /* Carousel Wrapper Track system */
     .carousel-container {
       max-width: 1200px;
       margin: 0 auto;
@@ -440,7 +462,6 @@
       will-change: transform;
     }
 
-    /* Carousel Arrow Controls */
     .carousel-nav-btn {
       background-color: var(--bg-card);
       color: var(--text-main);
@@ -461,20 +482,14 @@
     }
 
     .carousel-nav-btn:hover {
-      border-color: var(--accent-copper);
-      color: var(--accent-copper);
-      box-shadow: 0 0 15px rgba(207, 138, 60, 0.15);
+      border-color: var(--accent-steel);
+      color: var(--accent-steel);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
     }
 
-    .carousel-nav-btn.prev {
-      left: 10px;
-    }
+    .carousel-nav-btn.prev { left: 10px; }
+    .carousel-nav-btn.next { right: 10px; }
 
-    .carousel-nav-btn.next {
-      right: 10px;
-    }
-
-    /* Individual Project Cards styled with custom margins */
     .project-card {
       background-color: var(--bg-card);
       border: 1px solid rgba(255, 255, 255, 0.03);
@@ -489,7 +504,7 @@
 
     .project-card:hover {
       transform: translateY(-8px);
-      border-color: var(--accent-copper);
+      border-color: var(--accent-steel);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
 
@@ -503,14 +518,14 @@
     .card-category {
       font-size: 0.7rem;
       font-weight: 700;
-      color: var(--accent-copper);
+      color: var(--accent-steel);
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
     .card-specs-sf {
       font-size: 0.75rem;
-      background: rgba(207, 138, 60, 0.1);
+      background: rgba(56, 189, 248, 0.1);
       color: var(--accent-light);
       padding: 0.2rem 0.6rem;
       border-radius: 4px;
@@ -521,7 +536,6 @@
       font-size: 1.35rem;
       line-height: 1.3;
       margin-bottom: 0.4rem;
-      color: var(--text-main);
     }
 
     .project-card .card-location {
@@ -538,7 +552,6 @@
       padding-right: 0.3rem;
     }
 
-    /* Scrollbar style inside cards */
     .card-content-scroll::-webkit-scrollbar {
       width: 3px;
     }
@@ -564,7 +577,6 @@
     .card-detail p {
       color: var(--text-muted);
       margin: 0;
-      font-weight: 400;
     }
 
     .card-footer-tags {
@@ -587,7 +599,6 @@
       border-radius: 3px;
     }
 
-    /* Carousel Dots indicators */
     .carousel-dots {
       display: flex;
       justify-content: center;
@@ -605,12 +616,12 @@
     }
 
     .carousel-dots .dot.active {
-      background-color: var(--accent-copper);
+      background-color: var(--accent-steel);
       width: 24px;
       border-radius: 4px;
     }
 
-    /* --- PREMIUM MINIMALIST CONTACT SECTION --- */
+    /* --- CONTACT SECTION --- */
     .contact {
       background-color: var(--bg-card);
       position: relative;
@@ -650,12 +661,12 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: rgba(207, 138, 60, 0.08);
+      background: rgba(56, 189, 248, 0.08);
       border: 1px solid var(--border-thin);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-copper);
+      color: var(--accent-steel);
       font-size: 1.1rem;
     }
 
@@ -673,7 +684,7 @@
       margin: 0;
     }
 
-    /* Form Styles */
+    /* Premium Form Styles */
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -683,7 +694,6 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      position: relative;
     }
 
     .form-group label {
@@ -707,8 +717,8 @@
 
     .form-input:focus {
       outline: none;
-      border-color: var(--accent-copper);
-      box-shadow: 0 0 10px rgba(207, 138, 60, 0.1);
+      border-color: var(--accent-steel);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
     }
 
     textarea.form-input {
@@ -742,25 +752,20 @@
         grid-template-columns: 1fr;
         gap: 3.5rem;
       }
-
       .about-image {
         height: 400px;
       }
     }
 
     @media (max-width: 768px) {
-      .navbar {
-        padding: 0 5%;
-      }
-
       .nav-links {
-        display: none; /* Can be expanded with a JS hamburger class toggling */
+        display: none;
         position: absolute;
         top: var(--nav-height);
         left: 0;
         width: 100%;
         flex-direction: column;
-        background-color: rgba(17, 17, 18, 0.98);
+        background-color: rgba(15, 23, 42, 0.98);
         padding: 2rem;
         gap: 1.5rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -782,13 +787,14 @@
       }
 
       .carousel-container {
-        padding: 1rem 40px; /* Leave space for floating controls */
+        padding: 1rem 40px; 
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- --- NAVIGATION HEADER --- -->
   <header class="navbar">
     <div class="logo-container">
       <div class="logo-main">Grey Mountain</div>
@@ -809,6 +815,7 @@
     </div>
   </header>
 
+  <!-- --- HERO SECTION --- -->
   <section id="home" class="hero">
     <h1 class="hero-title">Precision HVAC &<br><span>Plumbing Design</span></h1>
     <p class="hero-subtitle">State-of-the-art engineering solutions engineered with code compliance, cost efficiency, and long-term maintainability in mind.</p>
@@ -818,6 +825,7 @@
     </div>
   </section>
 
+  <!-- --- ABOUT ME SECTION --- -->
   <section id="about" class="about section-padding reveal">
     <div class="about-grid">
       <div class="about-image-wrapper">
@@ -848,6 +856,7 @@
     </div>
   </section>
 
+  <!-- --- PROJECTS SECTION (CAROUSEL) --- -->
   <section id="projects" class="projects section-padding reveal">
     <div class="section-header">
       <div class="section-title-wrapper">
@@ -869,6 +878,7 @@
       
       <div class="carousel-track" id="projectTrack">
         
+        <!-- Card 1: Siempre Utah -->
         <div class="project-card" data-category="hospitality">
           <div class="card-header-meta">
             <span class="card-category">Hospitality</span>
@@ -900,6 +910,7 @@
           </div>
         </div>
 
+        <!-- Card 2: Hearth & Hill -->
         <div class="project-card" data-category="hospitality">
           <div class="card-header-meta">
             <span class="card-category">Hospitality</span>
@@ -931,6 +942,7 @@
           </div>
         </div>
 
+        <!-- Card 3: Hills Kitchen -->
         <div class="project-card" data-category="hospitality">
           <div class="card-header-meta">
             <span class="card-category">Hospitality</span>
@@ -962,6 +974,7 @@
           </div>
         </div>
 
+        <!-- Card 4: Black Rock Event Center -->
         <div class="project-card" data-category="medical">
           <div class="card-header-meta">
             <span class="card-category">Arena & Public</span>
@@ -992,6 +1005,7 @@
           </div>
         </div>
 
+        <!-- Card 5: Farmington Flex -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Industrial</span>
@@ -1022,6 +1036,7 @@
           </div>
         </div>
 
+        <!-- Card 6: Heritage School -->
         <div class="project-card" data-category="commercial">
           <div class="card-header-meta">
             <span class="card-category">Commercial</span>
@@ -1052,6 +1067,7 @@
           </div>
         </div>
 
+        <!-- Card 7: Brite Family Dental -->
         <div class="project-card" data-category="medical">
           <div class="card-header-meta">
             <span class="card-category">Medical</span>
@@ -1082,6 +1098,7 @@
           </div>
         </div>
 
+        <!-- Card 8: The Front Gym Addition -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Gym & Fitness</span>
@@ -1112,6 +1129,7 @@
           </div>
         </div>
 
+        <!-- Card 9: Dragon Steel -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Industrial</span>
@@ -1142,6 +1160,7 @@
           </div>
         </div>
 
+        <!-- Card 10: ABS Kids -->
         <div class="project-card" data-category="commercial">
           <div class="card-header-meta">
             <span class="card-category">Commercial</span>
@@ -1172,6 +1191,7 @@
           </div>
         </div>
 
+        <!-- Card 11: Jump TI -->
         <div class="project-card" data-category="industrial">
           <div class="card-header-meta">
             <span class="card-category">Industrial</span>
@@ -1210,6 +1230,7 @@
     <div class="carousel-dots" id="carouselDots"></div>
   </section>
 
+  <!-- --- CONTACT SECTION WITH WORKING KEY --- -->
   <section id="contact" class="contact section-padding reveal">
     <div class="contact-grid">
       <div class="contact-info">
@@ -1235,8 +1256,12 @@
         </div>
       </div>
       
+      <!-- Fully Functional Form -->
       <div>
-        <form class="contact-form" action="#" method="POST">
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Live API key embedded -->
+          <input type="hidden" name="access_key" value="5f4d0345-4041-4928-9422-c31c9921a0d8">
+          
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
@@ -1255,11 +1280,13 @@
     </div>
   </section>
 
+  <!-- --- FOOTER --- -->
   <footer class="footer">
     <div class="footer-logo">Grey Mountain Mechanical</div>
     <p class="footer-copyright">&copy; 2026 Grey Mountain Mechanical. All rights reserved.</p>
   </footer>
 
+  <!-- --- WEBSITE LOGIC --- -->
   <script>
     /* --- MOBILE RESPONSIVE NAV TOGGLE --- */
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1270,7 +1297,6 @@
       mobileMenu.classList.toggle('active');
     });
 
-    // Close menu when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinksList.classList.remove('active');
@@ -1278,7 +1304,7 @@
       });
     });
 
-    /* --- PREMIUM INTERSECTION OBSERVER FOR SCROLL REVEALS --- */
+    /* --- SCROLL REVEAL OBSERVER --- */
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -1289,7 +1315,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // Trigger once
+          observer.unobserve(entry.target); 
         }
       });
     }, observerOptions);
@@ -1304,10 +1330,11 @@
 
     window.addEventListener('scroll', () => {
       let current = '';
+      const scrollPosition = window.scrollY || window.pageYOffset;
+      
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - 150)) {
+        if (scrollPosition >= (sectionTop - 150)) {
           current = section.getAttribute('id');
         }
       });
@@ -1320,7 +1347,7 @@
       });
     });
 
-    /* --- INTERACTIVE CAROUSEL TRACK LOGIC --- */
+    /* --- CAROUSEL TRACK LOGIC --- */
     const track = document.getElementById('projectTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -1332,14 +1359,12 @@
     let currentIndex = 0;
     let cardsToShow = 3;
 
-    // Detect how many cards fit the viewport screen size
     function getCardsToShow() {
       if (window.innerWidth < 768) return 1;
       if (window.innerWidth < 1100) return 2;
       return 3;
     }
 
-    // Recalculates card sizing, translates track, updates dots
     function updateCarousel() {
       cardsToShow = getCardsToShow();
       const maxIndex = Math.max(0, filteredCards.length - cardsToShow);
@@ -1348,12 +1373,11 @@
       if (currentIndex < 0) currentIndex = 0;
 
       const trackWidth = track.clientWidth;
-      const gap = 24; // Align with the gap defined in CSS
+      const gap = 24; 
       const cardWidth = filteredCards.length > 0 
         ? (trackWidth - (cardsToShow - 1) * gap) / cardsToShow 
         : 0;
 
-      // Adjust widths of only active cards
       allCards.forEach(card => {
         if (filteredCards.includes(card)) {
           card.style.display = 'flex';
@@ -1364,14 +1388,11 @@
         }
       });
 
-      // Shift position
       const offset = currentIndex * (cardWidth + gap);
       track.style.transform = `translateX(-${offset}px)`;
 
-      // Dots Indicator refresh
       updateDots(maxIndex);
 
-      // Disable buttons if we reach boundary edges
       prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
       prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
       nextBtn.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
@@ -1396,7 +1417,6 @@
       }
     }
 
-    // Next & Previous Slide Event Handlers
     nextBtn.addEventListener('click', () => {
       cardsToShow = getCardsToShow();
       if (currentIndex < filteredCards.length - cardsToShow) {
@@ -1412,41 +1432,32 @@
       }
     });
 
-    /* --- CAROUSEL PROJECTS CATEGORY FILTERING --- */
     filterBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
-        // Toggle Active Button styling
         filterBtns.forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
 
         const filterValue = e.target.getAttribute('data-filter');
         
-        // Filter elements
         if (filterValue === 'all') {
           filteredCards = [...allCards];
         } else {
           filteredCards = allCards.filter(card => card.getAttribute('data-category') === filterValue);
         }
 
-        // Reset track scroll position
         currentIndex = 0;
         track.style.transform = 'translateX(0px)';
-        
-        // Refresh widths and items
         updateCarousel();
       });
     });
 
-    // Recalculate dimensions on resize
     window.addEventListener('resize', () => {
       updateCarousel();
     });
 
-    // Initial load setup delay
     setTimeout(() => {
       updateCarousel();
     }, 150);
-
   </script>
 </body>
 </html>
