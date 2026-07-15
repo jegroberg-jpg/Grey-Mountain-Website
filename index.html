@@ -343,3 +343,84 @@
         <h2>About Us</h2>
         <p>Grey Mountain Mechanical provides elite HVAC engineering solutions, specialized structural load calculations, and precision mechanical layouts designed to stand up to the toughest environmental demands.</p>
     </section>
+
+    <section id="projects" class="projects-section">
+        <h2>Featured Projects</h2>
+        
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project1.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>Siempre Utah Reception Center</h3>
+                        <p class="location">Draper, UT | 10,000 SF</p>
+                        <p>VRF system design for an upscale reception center featuring a comprehensive, full-service commercial kitchen space optimized efficiently inside the basement layout.</p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project2.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>The Front Climbing Addition</h3>
+                        <p class="location">Salt Lake City, UT | 30,000 SF</p>
+                        <p>A sprawling 20,000 SF building expansion alongside a detailed 10,000 SF layout remodel. Designed to accommodate climbing walls, custom saunas, and intense workout facilities deployed smoothly across 4 phases.</p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('project3.jpg');"></div>
+                    <div class="slide-content">
+                        <h3>Dragon Steel Warehouse</h3>
+                        <p class="location">Pleasant Grove, UT | 40,000 SF</p>
+                        <p>Industrial warehouse combined with corporate office spaces. Implemented tailored furnace systems and high-volume low-speed (HVLS) fans to massively step up interior comfort profiles while protecting bottom-line utility operational costs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Get in Touch</h2>
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="5f4d0345-4041-4928-9422-c31c9921a0d8">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Grey Mountain Mechanical &copy; 2026 | Phone: <a href="tel:3852018843">385-201-8843</a> | Email: <a href="mailto:enoch@greymountainmechanical.com">enoch@greymountainmechanical.com</a></p>
+    </footer>
+
+    <script>
+        let currentSlideIndex = 0;
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(index) {
+            currentSlideIndex = (index + slides.length) % slides.length;
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        }
+
+        function moveSlide(step) {
+            showSlide(currentSlideIndex + step);
+        }
+
+        let autoCycle = setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        document.querySelectorAll('.carousel-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                clearInterval(autoCycle);
+                autoCycle = setInterval(() => { moveSlide(1); }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
