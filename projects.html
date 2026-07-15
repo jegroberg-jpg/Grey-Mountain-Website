@@ -2,31 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Projects | Grey Mountain Mechanical</title>
+    <title>All Projects | Grey Mountain Mechanical</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #1A1F26; color: white; padding: 50px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: #242B35; padding: 20px; text-align: center; border-radius: 4px; }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card a { color: #FFF; text-decoration: none; display: block; margin-top: 15px; font-weight: bold; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #1A1F26; color: white; padding: 100px 5%; }
+        nav { position: fixed; top: 30px; right: 5%; z-index: 100; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin-top: 50px; }
+        .card { background: #242B35; border-radius: 4px; overflow: hidden; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-content { padding: 25px; }
         h1 { text-align: center; margin-bottom: 50px; }
     </style>
 </head>
 <body>
-    <h1>Our Projects</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1>Our Complete Portfolio</h1>
     <div class="grid">
+        <!-- You can repeat this block for every project you have -->
         <div class="card">
-            <img src="project1.jpg" alt="Project 1">
-            <a href="project-detail.html?id=1">Siempre Utah Reception Center</a>
+            <img src="project1.jpg" alt="Project">
+            <div class="card-content">
+                <h3>Siempre Utah Reception Center</h3>
+                <p>VRF system design and full-service kitchen integration.</p>
+            </div>
         </div>
-        <div class="card">
-            <img src="project2.jpg" alt="Project 2">
-            <a href="project-detail.html?id=2">The Front Climbing Addition</a>
-        </div>
-        <div class="card">
-            <img src="project3.jpg" alt="Project 3">
-            <a href="project-detail.html?id=3">Dragon Steel Warehouse</a>
-        </div>
+        <!-- Add more cards here -->
     </div>
 </body>
 </html>
