@@ -1,11 +1,35 @@
-/* --- New Fixed Navigation Styles --- */
+/* 1. Variables at the top */
+:root {
+    --navy: #1F2933;
+    --slate: #334E68;
+    --light: #F5F7FA;
+    --gray: #D1D5DB;
+}
+
+/* 2. Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 3. Combined Body block */
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--navy);
+    background: white;
+    line-height: 1.7;
+    padding-top: 70px; /* This keeps your content below the fixed nav */
+}
+
+/* 4. Navigation */
 .main-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px; /* Fixed height for the bar */
-    background-color: var(--slate); /* Uses your defined variable */
+    height: 70px;
+    background-color: var(--slate);
     display: flex;
     align-items: center;
     padding: 0 5%;
@@ -13,12 +37,6 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* This fixes the "Jump" - it pushes the page content down so nothing is hidden */
-body {
-    padding-top: 70px; 
-}
-
-/* Ensure the nav links look good on the slate background */
 .main-nav ul {
     display: flex;
     list-style: none;
@@ -27,35 +45,17 @@ body {
 }
 
 .main-nav a {
-    color: white; /* Contrast against slate */
+    color: white;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 1px;
 }
-:root{
-    --navy:#1F2933;
-    --slate:#334E68;
-    --light:#F5F7FA;
-    --gray:#D1D5DB;
-}
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:'Source Sans 3',sans-serif;
-    color:var(--navy);
-    background:white;
-    line-height:1.7;
-}
-
-h1,h2,h3,h4{
-    font-family:'Montserrat',sans-serif;
-    font-weight:600;
+/* 5. Rest of your styles */
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 header {
@@ -94,14 +94,15 @@ li {
 }
 
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
+
 .card {
-  background: #2F3E46; /* Updated Slate Color */
-  color: #F8F9FA;
-  padding: 15px;
-  border-radius: 8px;
+    background: #2F3E46;
+    color: #F8F9FA;
+    padding: 15px;
+    border-radius: 8px;
 }
