@@ -1,4 +1,4 @@
-/* 1. Variables at the top */
+/* --- Global Styles --- */
 :root {
     --navy: #1F2933;
     --slate: #334E68;
@@ -6,23 +6,17 @@
     --gray: #D1D5DB;
 }
 
-/* 2. Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* 3. Combined Body block */
 body {
     font-family: 'Source Sans 3', sans-serif;
     color: var(--navy);
     background: white;
     line-height: 1.7;
-    padding-top: 70px; /* This keeps your content below the fixed nav */
+    padding-top: 70px; /* Fixes the jump */
 }
 
-/* 4. Navigation */
+/* --- Fixed Navigation --- */
 .main-nav {
     position: fixed;
     top: 0;
@@ -37,72 +31,9 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.main-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-    margin: 0;
-}
+.main-nav ul { display: flex; list-style: none; gap: 30px; margin: 0; }
+.main-nav a { color: white; text-decoration: none; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
 
-.main-nav a {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-/* 5. Rest of your styles */
-h1, h2, h3, h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-}
-
-header {
-    background: #1f4e79;
-    color: white;
-    padding: 60px 20px;
-    text-align: left;
-}
-
-header h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-}
-
-header p {
-    font-size: 20px;
-}
-
-section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-h2 {
-    color: #1f4e79;
-    font-size: 28px;
-}
-
-ul {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.card {
-    background: #2F3E46;
-    color: #F8F9FA;
-    padding: 15px;
-    border-radius: 8px;
-}
+/* --- Other Global Styles --- */
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; }
+section { max-width: 900px; margin: 40px auto; padding: 0 20px; }
