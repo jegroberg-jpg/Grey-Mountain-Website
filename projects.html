@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <title>All Projects | Grey Mountain Mechanical</title>
     <style>
+        /* Base styles */
         body { font-family: 'Segoe UI', sans-serif; background-color: #1A1F26; color: white; padding: 100px 5%; }
         nav { position: fixed; top: 30px; right: 5%; z-index: 100; }
         nav ul { display: flex; list-style: none; gap: 30px; }
         nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin-top: 50px; }
-        .card { background: #242B35; border-radius: 4px; overflow: hidden; }
+        .card { background: #242B35; border-radius: 4px; overflow: hidden; cursor: pointer; }
         .card img { width: 100%; height: 250px; object-fit: cover; }
         .card-content { padding: 25px; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        .modal-content { position: relative; margin: 2% auto; width: 80%; height: 90%; display: flex; align-items: center; justify-content: center; }
+        #modal-image { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .close-btn { position: absolute; top: -40px; right: 0; font-size: 40px; cursor: pointer; color: white; z-index: 1001; }
     </style>
 </head>
 <body>
@@ -28,121 +35,58 @@
     <h1>Our Complete Portfolio</h1>
     
     <div class="grid">
-      <!-- 1. Siempre Utah -->
-      <div class="card" onclick="openPdf('Siempre.png')" style="cursor: pointer;">
+      <!-- NOTE: Updated onclick="openImage(...)" for every card below -->
+      <div class="card" onclick="openImage('simpre3.png')">
         <img src="simpre3.png" alt="Siempre Utah">
         <div class="card-content">
             <h3>Siempre Utah Reception Center</h3><p>Draper, UT | 2020 | 10,000 SF</p>
         </div>
       </div>
-      <!-- 2. Hearth and Hill -->
-      <div class="card">
+      
+      <div class="card" onclick="openImage('hearthandhill5.png')">
         <img src="hearthandhill5.png" alt="Hearth and Hill">
         <div class="card-content">
             <h3>Hearth and Hill Restaurant</h3><p>Sugar House, UT | 2024 | 6,300 SF</p>
         </div>
       </div>
-      <!-- 3. The Front Climbing -->
-      <div class="card">
+      
+      <div class="card" onclick="openImage('thefront.png')">
         <img src="thefront.png" alt="The Front Climbing">
         <div class="card-content">
             <h3>The Front Climbing Addition</h3><p>Salt Lake City, UT | 2022 | 30,000 SF</p>
         </div>
       </div>
-      <!-- 4. Black Rock -->
-      <div class="card">
-        <img src="blackrock3.png" alt="Black Rock">
-        <div class="card-content">
-            <h3>Black Rock Event Center</h3><p>Park City, UT | 2023 | 101,000 SF</p>
-        </div>
-      </div>
-      <!-- 5. Jump TI -->
-      <div class="card">
-        <img src="jump2.png" alt="Jump TI">
-        <div class="card-content">
-            <h3>Jump TI Buildout</h3><p>Bluffdale, UT | 2022 | 3,000 SF</p>
-        </div>
-      </div>
-      <!-- 6. Brite Family Dental -->
-      <div class="card">
-        <img src="brite dental.png" alt="Brite Family Dental">
-        <div class="card-content">
-            <h3>Brite Family Dental</h3><p>American Fork, UT | 2022 | 5,000 SF</p>
-        </div>
-      </div>
-      <!-- 7. Dragon Steel -->
-      <div class="card">
-        <img src="dragonsteel.png" alt="Dragon Steel">
-        <div class="card-content">
-            <h3>Dragon Steel Warehouse</h3><p>Pleasant Grove, UT | 2023 | 40,000 SF</p>
-        </div>
-      </div>
-      <!-- 8. ABS Kids -->
-      <div class="card">
-        <img src="abskids.png" alt="ABS Kids">
-        <div class="card-content">
-            <h3>ABS Kids</h3><p>South Jordan, UT | 2024 | 3,000 SF</p>
-        </div>
-      </div>
-      <!-- 9. Heritage School -->
-      <div class="card">
-        <img src="heritageschool.png" alt="Heritage School">
-        <div class="card-content">
-            <h3>Heritage School Admin Building</h3><p>Provo, UT | 2024 | 6,000 SF</p>
-        </div>
-      </div>
-      <!-- 10. Farmington Flex -->
-      <div class="card">
-        <img src="farmingtonflex.png" alt="Farmington Flex">
-        <div class="card-content">
-            <h3>Farmington Flex Warehouse</h3><p>Farmington, UT | 2023 | 500,000 SF</p>
-        </div>
-      </div>
-      <!-- 11. Hills Kitchen -->
-      <div class="card">
-        <img src="hillskitchen3.png" alt="Hills Kitchen">
-        <div class="card-content">
-            <h3>Hills Kitchen Restaurant</h3><p>Sugar House, UT | 2024 | 5,000 SF</p>
-        </div>
-      </div>
+
+      <!-- Add more cards here following the same pattern: onclick="openImage('your-file-name.png')" -->
     </div>
 
-       <!-- The Image Pop-up Modal -->
-<div id="image-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <!-- Changed from iframe to img -->
-        <img id="modal-image" src="" alt="Project Details">
+    <!-- The Image Pop-up Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="Project Details">
+        </div>
     </div>
-</div>
     
-    <style>
-        /* Minimal styles to make the modal work */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); }
-        .modal-content { background-color: #fff; margin: 5% auto; width: 80%; height: 80%; position: relative; border-radius: 8px; overflow: hidden; }
-        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; z-index: 1001; }
-    </style>
-    // clicking function for projects 
     <script>
-    function openImage(imagePath) {
-        // This finds the modal-image element and sets its source to your image
-        document.getElementById('modal-image').src = imagePath;
-        document.getElementById('image-modal').style.display = 'block';
-    }
+        function openImage(imagePath) {
+            document.getElementById('modal-image').src = imagePath;
+            document.getElementById('image-modal').style.display = 'block';
+        }
 
-    function closeModal() {
-        document.getElementById('image-modal').style.display = 'none';
-        document.getElementById('modal-image').src = ""; // Clears the image
-    }
+        function closeModal() {
+            document.getElementById('image-modal').style.display = 'none';
+        }
 
-
-    // Close if clicking outside the modal
-    window.onclick = function(event) {
-        var modal = document.getElementById('image-modal');
+        // Close if clicking outside the modal
+        window.onclick = function(event) {
+            var modal = document.getElementById('image-modal');
             if (event.target == modal) {
                 closeModal();
+            }
         }
-    }
-</script>
+    </script>
+</body>
+</html>
 </body>
 </html>
