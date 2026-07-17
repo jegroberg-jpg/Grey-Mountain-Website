@@ -125,5 +125,18 @@
             <button type="submit">Send Message</button>
         </form>
     </section>
+    <script>
+        let currentSlide = 0;
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.slide');
+
+        function moveSlide(direction) {
+            // Update the index, ensuring it loops back to start/end
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            
+            // Move the track
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+    </script>
 </body>
 </html>
