@@ -124,15 +124,17 @@
     </style>
     // clicking function for projects 
     <script>
-    function openPdf(pdfFile) {
-        document.getElementById('pdf-frame').src = pdfFile;
-        document.getElementById('pdf-modal').style.display = 'block';
+    function openImage(imagePath) {
+        // This finds the modal-image element and sets its source to your image
+        document.getElementById('modal-image').src = imagePath;
+        document.getElementById('image-modal').style.display = 'block';
     }
 
     function closeModal() {
-        document.getElementById('pdf-modal').style.display = 'none';
-        document.getElementById('pdf-frame').src = ""; // Clears the PDF
+        document.getElementById('image-modal').style.display = 'none';
+        document.getElementById('modal-image').src = ""; // Clears the image
     }
+
 
     // Close if clicking outside the modal
     window.onclick = function(event) {
