@@ -122,5 +122,24 @@
         .modal-content { background-color: #fff; margin: 5% auto; width: 80%; height: 80%; position: relative; border-radius: 8px; overflow: hidden; }
         .close-btn { position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; z-index: 1001; }
     </style>
+    // clicking function for projects 
+    <script>
+    function openPdf(pdfFile) {
+        document.getElementById('pdf-frame').src = pdfFile;
+        document.getElementById('pdf-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('pdf-modal').style.display = 'none';
+        document.getElementById('pdf-frame').src = ""; // Clears the PDF
+    }
+
+    // Close if clicking outside the modal
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('pdf-modal')) {
+            closeModal();
+        }
+    }
+</script>
 </body>
 </html>
