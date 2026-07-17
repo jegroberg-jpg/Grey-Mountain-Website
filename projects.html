@@ -138,8 +138,9 @@
 
     // Close if clicking outside the modal
     window.onclick = function(event) {
-        if (event.target == document.getElementById('pdf-modal')) {
-            closeModal();
+        var modal = document.getElementById('image-modal');
+            if (event.target == modal) {
+                closeModal();
         }
     }
 </script>
