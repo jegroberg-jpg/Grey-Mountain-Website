@@ -150,16 +150,17 @@ li {
         z-index: 1001; 
     }
 
-.bottom-right-logo {
+.watermark-logo {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    pointer-events: none; /* Optional: allows clicks to pass through the logo container if needed */
+    bottom: 30px;
+    right: 30px;
+    z-index: 0;              /* Keeps it behind your main text/cards */
+    opacity: 0.15;           /* Controls transparency (0.0 to 1.0) */
+    pointer-events: none;    /* Ensures you can still click things underneath it */
 }
 
-.bottom-right-logo img {
-    width: 120px; /* Adjust this value to fit your desired logo size */
+.watermark-logo img {
+    width: 250px;            /* Adjust size for a larger watermark look */
     height: auto;
     display: block;
 }
