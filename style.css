@@ -149,4 +149,18 @@ li {
         color: white; 
         z-index: 1001; 
     }
+
+.bottom-right-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    pointer-events: none; /* Optional: allows clicks to pass through the logo container if needed */
+}
+
+.bottom-right-logo img {
+    width: 120px; /* Adjust this value to fit your desired logo size */
+    height: auto;
+    display: block;
+}
 </style>
