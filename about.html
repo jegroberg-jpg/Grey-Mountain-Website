@@ -5,22 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Grey Mountain Mechanical</title>
     <style>
-        /* Color Palette & Base Styles */
-        body {
-            background-color: #2A313C; /* Your Slate Color */
-            color: #FFFFFF; /* White text for readability */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary-dark: #2A313C;
+            --accent-blue: #3A4750;
+            --card-bg: #242B35;
+            --text-light: #FFFFFF;
         }
 
-        /* Navigation Styles matching index.html */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: var(--primary-dark); 
+            color: var(--text-light); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Georgia', serif; font-weight: normal; }
+
+        /* Navigation */
         nav { 
             position: fixed; 
             top: 30px; 
             right: 5%; 
             z-index: 100; 
+            background: rgba(42, 49, 60, 0.9);
+            padding: 10px 20px;
+            border-radius: 4px;
         }
         nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
         nav a { 
@@ -31,38 +43,114 @@
             text-transform: uppercase; 
             transition: color 0.3s ease; 
         }
-        nav a:hover { color: #FFFFFF; }
+        nav a:hover { color: var(--text-light); }
 
+        /* Split-Screen Layout Container */
         .about-container {
-            max-width: 800px;
-            margin: 100px auto 40px auto; /* Increased top margin for nav */
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
+            max-width: 1200px;
+            margin: 140px auto 80px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: start;
         }
 
-        .photo-placeholder {
-            width: 300px;
-            height: 300px;
-            background-color: #3A4750; /* Slightly lighter slate for contrast */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Left Column: Photo Card */
+        .photo-card {
+            background: var(--card-bg);
+            border-radius: 6px;
             overflow: hidden;
-            border: 4px solid #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .bio {
+        .photo-container {
+            width: 100%;
+            height: 450px;
+            background-color: var(--accent-blue);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .photo-caption {
+            padding: 20px;
             text-align: center;
-            max-width: 600px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        h2 { color: #FFFFFF; font-family: 'Georgia', serif; }
-        
-        p { color: rgba(255, 255, 255, 0.8); }
+        /* Right Column: Bio & Expertise */
+        .bio-content h2 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .bio-content p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        /* Expertise Grid (from Option 3) */
+        .expertise-section {
+            margin-top: 40px;
+        }
+
+        .expertise-section h3 {
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #9daaf2;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-blue);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Watermark Logo */
+        .watermark-logo {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .watermark-logo img {
+            width: 250px;
+            height: auto;
+            display: block;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 900px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .photo-container {
+                height: 350px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -76,19 +164,38 @@
         </ul>
     </nav>
 
-    <div class="about-container">
-        <!-- Photo Placeholder Section -->
-        <div class="photo-placeholder">
-            <img src="your-photo.jpg" alt="Professional Photo" style="width: 100%; height: 100%; object-fit: cover;">
+    <main class="about-container">
+        <!-- Left Side: Professional Photo Frame -->
+        <div class="photo-card">
+            <!-- Replace 'your-photo.jpg' with your actual image file name -->
+            <div class="photo-container" style="background-image: url('your-photo.jpg');"></div>
+            <div class="photo-caption">Enoch Groberg | Principal Engineer</div>
         </div>
 
-        <!-- Bio Section -->
-        <div class="bio">
+        <!-- Right Side: Bio & Core Competencies -->
+        <div class="bio-content">
             <h2>About Me</h2>
-            <p>Welcome to Grey Mountain Mechanical. My name is [Your Name], and I specialize in providing innovative HVAC engineering solutions.</p>
-            <p>With a focus on code compliance, efficient system design, and practical construction administration, I help bring architectural visions to life while ensuring comfort and functionality for every space—from commercial kitchens to large-scale warehouses.</p>
-            <p>I am passionate about finding creative solutions to challenging mechanical constraints and coordinating seamlessly with contractors to deliver projects on time.</p>
+            <p>Welcome to Grey Mountain Mechanical. My name is Enoch Groberg, and I specialize in providing innovative HVAC and plumbing engineering solutions.</p>
+            <p>With a focus on rigorous code compliance, efficient system design, and hands-on construction administration, I bridge the gap between architectural design concepts and functional, comfortable physical spaces—ranging from commercial kitchens and event centers to large-scale industrial warehouses.</p>
+            <p>I thrive on solving complex mechanical constraints in tight ceiling spaces, meeting demanding project deadlines, and coordinating seamlessly with contractors in the field.</p>
+
+            <div class="expertise-section">
+                <h3>Core Competencies & Services</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">HVAC System Design</div>
+                    <div class="skill-item">Commercial Kitchens & Hoods</div>
+                    <div class="skill-item">Plumbing & Medical Gas</div>
+                    <div class="skill-item">Code Compliance & Permitting</div>
+                    <div class="skill-item">Construction Administration</div>
+                    <div class="skill-item">VRF & ERV Integration</div>
+                </div>
+            </div>
         </div>
+    </main>
+
+    <!-- Watermark Logo -->
+    <div class="watermark-logo">
+        <img src="Grey Mountain Mechanical Logo.png" alt="Logo Watermark">
     </div>
 
 </body>
