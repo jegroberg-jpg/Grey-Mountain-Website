@@ -2,159 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Grey Mountain Mechanical</title>
+    <title>All Projects | Grey Mountain Mechanical</title>
     <style>
-        :root {
-            --primary-dark: #2A313C;
-            --accent-blue: #3A4750;
-            --card-bg: #242B35;
-            --text-light: #FFFFFF;
-        }
+        /* Base styles */
+        body { font-family: 'Segoe UI', sans-serif; background-color: #1A1F26; color: white; padding: 100px 5%; }
+        nav { position: fixed; top: 30px; right: 5%; z-index: 100; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin-top: 50px; }
+        .card { background: #242B35; border-radius: 4px; overflow: hidden; cursor: pointer; }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-content { padding: 25px; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { 
-            background-color: var(--primary-dark); 
-            color: var(--text-light); 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            line-height: 1.6; 
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 { font-family: 'Georgia', serif; font-weight: normal; }
-
-        /* Navigation */
-        nav { 
-            position: fixed; 
-            top: 30px; 
-            right: 5%; 
-            z-index: 100; 
-            background: rgba(42, 49, 60, 0.9);
-            padding: 10px 20px;
-            border-radius: 4px;
-        }
-        nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
-        nav a { 
-            color: rgba(255, 255, 255, 0.7); 
-            text-decoration: none; 
-            font-size: 0.95rem; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            transition: color 0.3s ease; 
-        }
-        nav a:hover { color: var(--text-light); }
-
-        /* Split-Screen Layout Container */
-        .about-container {
-            max-width: 1200px;
-            margin: 140px auto 80px auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 60px;
-            align-items: center; /* Changed from 'start' to 'center' for vertical alignment */
-        }
-
-        /* Left Column: Photo Card */
-        .photo-card {
-            background: var(--card-bg);
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .photo-container {
-            width: 100%;
-            height: 450px;
-            background-color: var(--accent-blue);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .photo-caption {
-            padding: 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.7);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Right Column: Bio & Expertise */
-        .bio-content h2 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .bio-content p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
-
-        /* Expertise Grid */
-        .expertise-section {
-            margin-top: 40px;
-        }
-
-        .expertise-section h3 {
-            font-size: 1.2rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            color: #9daaf2;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .skill-item {
-            background: var(--card-bg);
-            padding: 15px 20px;
-            border-radius: 4px;
-            border-left: 3px solid var(--accent-blue);
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Watermark Logo */
-        .watermark-logo {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 0;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-        .watermark-logo img {
-            width: 250px;
-            height: auto;
-            display: block;
-        }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 900px) {
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .photo-container {
-                height: 350px;
-            }
-        }
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        .modal-content { position: relative; margin: 2% auto; width: 80%; height: 90%; display: flex; align-items: center; justify-content: center; }
+        #modal-image { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .close-btn { position: absolute; top: -40px; right: 0; font-size: 40px; cursor: pointer; color: white; z-index: 1001; }
     </style>
 </head>
 <body>
-
     <nav class="main-nav">
         <ul>
             <li><a href="index.html#home">Home</a></li>
@@ -164,38 +32,111 @@
         </ul>
     </nav>
 
-    <main class="about-container">
-        <!-- Left Side: Professional Photo Frame -->
-        <div class="photo-card">
-            <!-- Replace 'your-photo.jpg' with your actual image file name -->
-            <div class="photo-container" style="background-image: url('your-photo.jpg');"></div>
-            <div class="photo-caption">Enoch Groberg | Principal Engineer</div>
+    <h1>Portfolio</h1>
+    
+    <div class="grid">
+      <div class="card" onclick="openImage('Siempre.png')">
+        <img src="simpre3.png" alt="Siempre Utah">
+        <div class="card-content">
+            <h3>Siempre Utah Reception Center</h3><p>Draper, UT | 2020 | 10,000 SF</p>
         </div>
-
-        <!-- Right Side: Bio & Core Competencies -->
-        <div class="bio-content">
-            <h2>About</h2>
-            <p>Before I ever started engineering, I began by installing HVAC systems in the field. I then transferred this expertise when I began engineering for the company that I used to install for. The knowledge I gained by being on both sides of a set of plans has enabled me to design systems how they will actually be built in the real world, find better solutions during construction administration, and gave me a comfortableness on the job site not found with your typical engineer.</p>
-            <p>I design with the end user in mind along with the contractor installing it. I pride myself in fast responses to RFI’s, accurate designs and maintaining valuable client relationships.</p>
-
-            <div class="expertise-section">
-                <h3>Core Competencies & Services</h3>
-                <div class="skills-grid">
-                    <div class="skill-item">HVAC System Design</div>
-                    <div class="skill-item">Commercial Kitchens and Restaurants</div>
-                    <div class="skill-item">Plumbing & Medical Gas</div>
-                    <div class="skill-item">Remodels and T.I.'s</div>
-                    <div class="skill-item">Construction Administration</div>
-                    <div class="skill-item">Value Engineering</div>
-                </div>
-            </div>
+      </div>
+      
+      <div class="card" onclick="openImage('Hearth_and_hill.png')">
+        <img src="hearthandhill5.png" alt="Hearth and Hill">
+        <div class="card-content">
+            <h3>Hearth and Hill Restaurant</h3><p>Sugar House, UT | 2024 | 6,300 SF</p>
         </div>
-    </main>
+      </div>
+      
+      <div class="card" onclick="openImage('The_front.png')">
+        <img src="thefront.png" alt="The Front Climbing">
+        <div class="card-content">
+            <h3>The Front Climbing Addition</h3><p>Salt Lake City, UT | 2022 | 30,000 SF</p>
+        </div>
+      </div>
 
-    <!-- Watermark Logo -->
-    <div class="watermark-logo">
-        <img src="Grey Mountain Mechanical Logo.png" alt="Logo Watermark">
+        <div class="card" onclick="openImage('Balckrock.png')">
+        <img src="blackrock5.jpg" alt="Black Rock Event Center">
+        <div class="card-content">
+            <h3>Black Rock Event Center</h3><p>Park City, UT | 2023 | 101,000 SF</p>
+        </div>
+      </div>
+
+        <div class="card" onclick="openImage('Jump.png')">
+        <img src="jump2.png" alt="Make The Jump T.I.">
+        <div class="card-content">
+            <h3>Make The Jump T.I.</h3><p>Bluffdale, UT | 2022 | 3,000 SF</p>
+        </div>
     </div>
 
+    <div class="card" onclick="openImage('Brite.png')">
+        <img src="brite dental.png" alt="Brite Family Dental">
+        <div class="card-content">
+            <h3>Brite Family Dental</h3><p>American Fork, UT | 2022 | 5,000 SF</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openImage('Dragon_steel.png')">
+        <img src="dragonsteel.png" alt="Dragon Steel Warehouse">
+        <div class="card-content">
+            <h3>Dragon Steel Warehouse</h3><p>Pleasant Grove, UT | 2023 | 40,000 SF</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openImage('abs_kids.png')">
+        <img src="abskids.png" alt="ABS Kids">
+        <div class="card-content">
+            <h3>ABS Kids</h3><p>South Jordan, UT | 2024 | 3,000 SF</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openImage('Heritage.png')">
+        <img src="heritageschool.png" alt="Heritage School Admin Building">
+        <div class="card-content">
+            <h3>Heritage School Admin Building</h3><p>Provo, UT | 2024 | 6,000 SF</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openImage('Farmington_flex.png')">
+        <img src="farmingtonflex.png" alt="Farmington Flex Warehouse">
+        <div class="card-content">
+            <h3>Farmington Flex Warehouse</h3><p>Farmington, UT | 2023 | 500,000 SF</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openImage('hills_kitchen.png')">
+        <img src="hillskitchen3.png" alt="Hills Kitchen Restaurant">
+        <div class="card-content">
+            <h3>Hills Kitchen Restaurant</h3><p>Sugar House, UT | 2024 | 5,000 SF</p>
+        </div>
+    </div>
+    </div>
+
+    <!-- The Image Pop-up Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="Project Details">
+        </div>
+    </div>
+    
+    <script>
+        function openImage(imagePath) {
+            document.getElementById('modal-image').src = imagePath;
+            document.getElementById('image-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('image-modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('image-modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
